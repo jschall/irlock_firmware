@@ -153,6 +153,8 @@ void Blobs::blobify()
     //timer2 += getTimer(timer);
     //cprintf("time=%d\n", timer2); // never seen this greater than 200us.  or 1% of frame period
 
+    m_blobs_time = m_frame_time;
+
     // reset read indexes-- new frame
     m_blobReadIndex = 0;
     m_ccBlobReadIndex = 0;
@@ -187,6 +189,9 @@ void Blobs::unpack()
     row = -1;
     memfull = false;
     i = 0;
+
+    while (m_qq->dequeue(&qval)==0);
+    m_frame_time = qval;
 
     while(1)
     {
@@ -294,7 +299,7 @@ uint16_t Blobs::getBlock(uint8_t *buf, uint32_t buflen)
     uint16_t *buf16 = (uint16_t *)buf;
     uint16_t temp, width, height;
     uint16_t checksum;
-    uint16_t len = 7;  // default
+    uint16_t len = 8;  // default
     int i = m_blobReadIndex*5;
 
     if (buflen<8*sizeof(uint16_t))
@@ -345,6 +350,13 @@ uint16_t Blobs::getBlock(uint8_t *buf, uint32_t buflen)
     temp = m_blobs[i+3] + height/2;
     checksum += temp;
     buf16[4] = temp;
+
+    // time
+    uint32_t time_since_exposure = LPC_TIMER2->TC - m_blobs_time;
+    if (time_since_exposure > UINT16_MAX) time_since_exposure = UINT16_MAX;
+    temp = (uint16_t)time_since_exposure;
+    checksum += temp;
+    buf16[7] = temp;
 
     buf16[1] = checksum;
 

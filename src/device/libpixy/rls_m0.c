@@ -582,6 +582,7 @@ int32_t getRLSFrame(uint32_t *m0Mem, uint32_t *lut)
 	// indicate start of frame
 	qq_enqueue(0xffffffff); 
 	skipLines(0);
+        qq_enqueue(LPC_TIMER2->TC);
 	for (line=0, totalQvals=1; line<CAM_RES2_HEIGHT; line++)  // start totalQvals at 1 because of start of frame value
 	{
 		// not enough space--- return error

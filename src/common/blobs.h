@@ -102,6 +102,8 @@ private:
     uint32_t m_minArea;
     uint16_t m_mergeDist;
     uint16_t m_maxCodedDist;
+    uint32_t m_frame_time;
+    uint32_t m_blobs_time;
     ColorCodeMode m_ccMode;
 };
 
