@@ -1,0 +1,24 @@
+--cpu Cortex-M4
+".\spifi\main_m4.o"
+"..\libpixy\libpixy_m4.lib"
+".\spifi\conncomp.o"
+".\spifi\exec.o"
+".\spifi\progblobs.o"
+".\spifi\progvideo.o"
+".\spifi\progpt.o"
+".\spifi\button.o"
+".\spifi\blob.o"
+".\spifi\blobs.o"
+".\spifi\colorlut.o"
+".\spifi\qqueue.o"
+".\spifi\lpc43xx_i2c.o"
+".\spifi\i2c.o"
+".\spifi\serial.o"
+".\spifi\analogdig.o"
+".\spifi\spi.o"
+".\spifi\uart.o"
+".\spifi\progchase.o"
+--strict --scatter ".\spifi.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\video.map" -o .\spifi\video.axf

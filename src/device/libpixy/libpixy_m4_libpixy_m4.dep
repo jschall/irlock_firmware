@@ -1,0 +1,497 @@
+Dependencies for Project 'libpixy_m4', Target 'libpixy_m4': (DO NOT MODIFY !)
+F (.\debug_frmwrk.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\debug_frmwrk.o --list_dir ".\\" --list --omf_browse .\debug_frmwrk.crf --depend .\debug_frmwrk.d)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (lpc43xx_scu.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5346D4F4)
+F (.\fpu_init.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\fpu_init.o --list_dir ".\\" --list --omf_browse .\fpu_init.crf --depend .\fpu_init.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+F (.\lpc43xx_adc.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\lpc43xx_adc.o --list_dir ".\\" --list --omf_browse .\lpc43xx_adc.crf --depend .\lpc43xx_adc.d)
+I (lpc43xx_adc.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (lpc43xx_cgu.h)(0x5490CFC7)
+I (lpc43xx_libcfg_default.h)(0x5490CFC7)
+F (.\lpc43xx_cgu.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\lpc43xx_cgu.o --list_dir ".\\" --list --omf_browse .\lpc43xx_cgu.crf --depend .\lpc43xx_cgu.d)
+I (lpc_types.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (lpc43xx_scu.h)(0x5490CFC7)
+I (lpc43xx_cgu.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+F (.\lpc43xx_scu.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\lpc43xx_scu.o --list_dir ".\\" --list --omf_browse .\lpc43xx_scu.crf --depend .\lpc43xx_scu.d)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (lpc43xx_scu.h)(0x5490CFC7)
+F (.\lpc43xx_uart.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\lpc43xx_uart.o --list_dir ".\\" --list --omf_browse .\lpc43xx_uart.crf --depend .\lpc43xx_uart.d)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (lpc43xx_cgu.h)(0x5490CFC7)
+I (lpc43xx_libcfg_default.h)(0x5490CFC7)
+F (.\platform_config.c)(0x5490CFC8)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\platform_config.o --list_dir ".\\" --list --omf_browse .\platform_config.crf --depend .\platform_config.d)
+I (LPC43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (platform_config.h)(0x5490CFC8)
+I (lpc43xx_scu.h)(0x5490CFC7)
+I (lpc43xx_cgu.h)(0x5490CFC7)
+I (lpc_types.h)(0x5490CFC7)
+I (spifi_rom_api.h)(0x5490CFC8)
+F (.\system_LPC43xx.c)(0x5490CFC8)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\system_lpc43xx.o --list_dir ".\\" --list --omf_browse .\system_lpc43xx.crf --depend .\system_lpc43xx.d)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+F (.\usbcore.c)(0x5490CFC8)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\usbcore.o --list_dir ".\\" --list --omf_browse .\usbcore.crf --depend .\usbcore.d)
+I (lpc43xx.H)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbhw.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbdesc.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+F (.\usbdesc.c)(0x5490CFC8)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\usbdesc.o --list_dir ".\\" --list --omf_browse .\usbdesc.crf --depend .\usbdesc.d)
+I (lpc43xx.H)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbdesc.h)(0x5490CFC8)
+F (.\usbhw.c)(0x5490CFC8)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\usbhw.o --list_dir ".\\" --list --omf_browse .\usbhw.crf --depend .\usbhw.d)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346D4F4)
+I (lpc43xx.H)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbhw.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (lpc43xx_scu.h)(0x5490CFC7)
+I (lpc43xx_cgu.h)(0x5490CFC7)
+F (.\usbuser.c)(0x5490CFC8)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\usbuser.o --list_dir ".\\" --list --omf_browse .\usbuser.crf --depend .\usbuser.d)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346D4F4)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbhw.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+I (debug.h)(0x5490CFC7)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+F (.\sccb.cpp)(0x5490CFC8)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\sccb.o --list_dir ".\\" --list --omf_browse .\sccb.crf --depend .\sccb.d)
+I (sccb.h)(0x5490CFC8)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+F (.\usblink.cpp)(0x5490CFC8)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\usblink.o --list_dir ".\\" --list --omf_browse .\usblink.crf --depend .\usblink.d)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346D4F4)
+I (lpc_types.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (pixyvals.h)(0x5490CFC8)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usblink.h)(0x5490CFC8)
+I (..\..\common\link.h)(0x5490CFC3)
+I (usbuser.h)(0x5490CFC8)
+I (usbhw.h)(0x5490CFC8)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (misc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+F (.\ipc_mbx.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\ipc_mbx.o --list_dir ".\\" --list --omf_browse .\ipc_mbx.crf --depend .\ipc_mbx.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (lpc_types.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (LPC43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+F (.\pixy_init.cpp)(0x5490CFC8)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\pixy_init.o --list_dir ".\\" --list --omf_browse .\pixy_init.crf --depend .\pixy_init.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5346D4F4)
+I (pixy_init.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (debug.h)(0x5490CFC7)
+I (lpc43xx_adc.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+I (chirpm0.h)(0x5490CFC7)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (.\smlink.hpp)(0x5490CFC8)
+I (.\pixyvals.h)(0x5490CFC8)
+I (chirpusb.h)(0x5490CFC7)
+I (.\usblink.h)(0x5490CFC8)
+I (param.h)(0x5490CFC8)
+I (camera.h)(0x5490CFC7)
+I (sccb.h)(0x5490CFC8)
+I (..\..\common\pixytypes.h)(0x5490CFC3)
+I (.\cameravals.h)(0x5490E40F)
+I (rcservo.h)(0x5490CFC8)
+I (led.h)(0x5490CFC7)
+I (power.h)(0x5490CFC8)
+I (misc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+F (.\startup_LPC43xx_m4.s)(0x5490CFC8)(--cpu Cortex-M4.fp --li -g --apcs=interwork -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include--pd "NO_CRP SETA 1"--list .\startup_lpc43xx_m4.lst --xref -o .\startup_lpc43xx_m4.o --depend .\startup_lpc43xx_m4.d)
+F (.\smlink.cpp)(0x5490CFC8)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\smlink.o --list_dir ".\\" --list --omf_browse .\smlink.crf --depend .\smlink.d)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (misc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (smlink.hpp)(0x5490CFC8)
+I (pixyvals.h)(0x5490CFC8)
+I (..\..\common\link.h)(0x5490CFC3)
+F (.\camera.cpp)(0x54BD5129)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\camera.o --list_dir ".\\" --list --omf_browse .\camera.crf --depend .\camera.d)
+I (.\pixy_init.h)(0x5490CFC8)
+I (.\lpc_types.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\debug_frmwrk.h)(0x5490CFC7)
+I (.\lpc43xx_uart.h)(0x5490CFC7)
+I (.\lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (.\system_LPC43xx.h)(0x5490CFC8)
+I (.\debug.h)(0x5490CFC7)
+I (.\lpc43xx_adc.h)(0x5490CFC7)
+I (.\usb.h)(0x5490CFC8)
+I (.\usbcfg.h)(0x5490CFC8)
+I (.\usbcore.h)(0x5490CFC8)
+I (.\usbuser.h)(0x5490CFC8)
+I (.\ipc_mbx.h)(0x5490CFC7)
+I (.\platform_config.h)(0x5490CFC8)
+I (.\master_ipc_msg.h)(0x5490CFC7)
+I (.\slave_ipc_msg.h)(0x5490CFC8)
+I (.\master_mbx_callbacks.h)(0x5490CFC7)
+I (.\slave_mbx_callbacks.h)(0x5490CFC8)
+I (.\chirpm0.h)(0x5490CFC7)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (.\smlink.hpp)(0x5490CFC8)
+I (.\pixyvals.h)(0x5490CFC8)
+I (.\chirpusb.h)(0x5490CFC7)
+I (.\usblink.h)(0x5490CFC8)
+I (camera.h)(0x5490CFC7)
+I (sccb.h)(0x5490CFC8)
+I (..\..\common\pixytypes.h)(0x5490CFC3)
+I (.\cameravals.h)(0x5490E40F)
+I (param.h)(0x5490CFC8)
+F (.\led.cpp)(0x5490CFC7)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\led.o --list_dir ".\\" --list --omf_browse .\led.crf --depend .\led.d)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5346D4F4)
+I (pixy_init.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (debug.h)(0x5490CFC7)
+I (lpc43xx_adc.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+I (chirpm0.h)(0x5490CFC7)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (.\smlink.hpp)(0x5490CFC8)
+I (.\pixyvals.h)(0x5490CFC8)
+I (chirpusb.h)(0x5490CFC7)
+I (.\usblink.h)(0x5490CFC8)
+I (misc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (led.h)(0x5490CFC7)
+F (.\rcservo.cpp)(0x5490CFC8)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\rcservo.o --list_dir ".\\" --list --omf_browse .\rcservo.crf --depend .\rcservo.d)
+I (pixy_init.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (debug.h)(0x5490CFC7)
+I (lpc43xx_adc.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+I (chirpm0.h)(0x5490CFC7)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (.\smlink.hpp)(0x5490CFC8)
+I (.\pixyvals.h)(0x5490CFC8)
+I (chirpusb.h)(0x5490CFC7)
+I (.\usblink.h)(0x5490CFC8)
+I (param.h)(0x5490CFC8)
+I (..\..\common\pixytypes.h)(0x5490CFC3)
+I (rcservo.h)(0x5490CFC8)
+F (.\misc.cpp)(0x5490CFC7)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\misc.o --list_dir ".\\" --list --omf_browse .\misc.crf --depend .\misc.d)
+I (misc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (lpc43xx_adc.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (pixy_init.h)(0x5490CFC8)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (debug.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+I (chirpm0.h)(0x5490CFC7)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (.\smlink.hpp)(0x5490CFC8)
+I (.\pixyvals.h)(0x5490CFC8)
+I (chirpusb.h)(0x5490CFC7)
+I (.\usblink.h)(0x5490CFC8)
+I (led.h)(0x5490CFC7)
+F (.\power.cpp)(0x5490CFC8)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\power.o --list_dir ".\\" --list --omf_browse .\power.crf --depend .\power.d)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5346D4F4)
+I (pixy_init.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (debug.h)(0x5490CFC7)
+I (lpc43xx_adc.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+I (chirpm0.h)(0x5490CFC7)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (.\smlink.hpp)(0x5490CFC8)
+I (.\pixyvals.h)(0x5490CFC8)
+I (chirpusb.h)(0x5490CFC7)
+I (.\usblink.h)(0x5490CFC8)
+I (misc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (power.h)(0x5490CFC8)
+F (.\lpc43xx_ssp.c)(0x5490CFC7)(-c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\lpc43xx_ssp.o --list_dir ".\\" --list --omf_browse .\lpc43xx_ssp.crf --depend .\lpc43xx_ssp.d)
+I (lpc43xx_ssp.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (lpc43xx_cgu.h)(0x5490CFC7)
+I (lpc43xx_libcfg_default.h)(0x5490CFC7)
+F (.\param.cpp)(0x5490CFC8)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\param.o --list_dir ".\\" --list --omf_browse .\param.crf --depend .\param.d)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346D4F4)
+I (param.h)(0x5490CFC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (..\..\common\pixytypes.h)(0x5490CFC3)
+I (flash.h)(0x5490CFC7)
+I (spifi_rom_api.h)(0x5490CFC8)
+I (debug.h)(0x5490CFC7)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm4.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm4_simd.h)(0x53034B90)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (pixy_init.h)(0x5490CFC8)
+I (lpc43xx_adc.h)(0x5490CFC7)
+I (usb.h)(0x5490CFC8)
+I (usbcfg.h)(0x5490CFC8)
+I (usbcore.h)(0x5490CFC8)
+I (usbuser.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+I (chirpm0.h)(0x5490CFC7)
+I (.\smlink.hpp)(0x5490CFC8)
+I (.\pixyvals.h)(0x5490CFC8)
+I (chirpusb.h)(0x5490CFC7)
+I (.\usblink.h)(0x5490CFC8)
+F (.\flash.cpp)(0x5490CFC7)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\flash.o --list_dir ".\\" --list --omf_browse .\flash.crf --depend .\flash.d)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346D4F4)
+I (flash.h)(0x5490CFC7)
+I (spifi_rom_api.h)(0x5490CFC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+F (..\..\common\chirp.cpp)(0x5490CFC3)(--cpp -c --cpu Cortex-M4.fp --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M4 -DIPC_MASTER -DPIXY-o .\chirp.o --list_dir ".\\" --list --omf_browse .\chirp.crf --depend .\chirp.d)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\new)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\exception)(0x5346D4F4)
+I (..\..\common\chirp.hpp)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\link.h)(0x5490CFC3)
+I (..\..\common\debug.h)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5346D4F4)
+F (.\spifi_drv_M4.lib)(0x5490CFC8)()

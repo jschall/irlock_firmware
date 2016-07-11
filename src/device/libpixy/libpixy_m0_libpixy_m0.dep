@@ -1,0 +1,69 @@
+Dependencies for Project 'libpixy_m0', Target 'libpixy_m0': (DO NOT MODIFY !)
+F (.\debug_frmwrk.c)(0x5490CFC7)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\debug_frmwrk.o --list_dir ".\\" --list --omf_browse .\debug_frmwrk.crf --depend .\debug_frmwrk.d)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm0.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (lpc43xx_scu.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5346D4F4)
+F (.\ipc_mbx.c)(0x5490CFC7)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\ipc_mbx.o --list_dir ".\\" --list --omf_browse .\ipc_mbx.crf --depend .\ipc_mbx.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (lpc_types.h)(0x5490CFC7)
+I (platform_config.h)(0x5490CFC8)
+I (LPC43xx.h)(0x5490CFC7)
+I (.\core_cm0.h)(0x5490CFC7)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (ipc_mbx.h)(0x5490CFC7)
+I (master_ipc_msg.h)(0x5490CFC7)
+I (slave_ipc_msg.h)(0x5490CFC8)
+I (master_mbx_callbacks.h)(0x5490CFC7)
+I (slave_mbx_callbacks.h)(0x5490CFC8)
+F (.\lpc43xx_uart.c)(0x5490CFC7)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\lpc43xx_uart.o --list_dir ".\\" --list --omf_browse .\lpc43xx_uart.crf --depend .\lpc43xx_uart.d)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm0.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+I (lpc43xx_cgu.h)(0x5490CFC7)
+I (lpc43xx_libcfg_default.h)(0x5490CFC7)
+F (.\debug.c)(0x5490CFC7)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\debug.o --list_dir ".\\" --list --omf_browse .\debug.crf --depend .\debug.d)
+I (debug.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5346D4F4)
+I (debug_frmwrk.h)(0x5490CFC7)
+I (lpc43xx_uart.h)(0x5490CFC7)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm0.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (lpc_types.h)(0x5490CFC7)
+F (.\chirp.c)(0x5490CFC7)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\chirp.o --list_dir ".\\" --list --omf_browse .\chirp.crf --depend .\chirp.d)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5346D4F4)
+I (chirp.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+F (.\smlink.c)(0x5490CFC8)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\smlink.o --list_dir ".\\" --list --omf_browse .\smlink.crf --depend .\smlink.d)
+I (lpc43xx.h)(0x5490CFC7)
+I (.\core_cm0.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (.\core_cmInstr.h)(0x5490CFC7)
+I (.\core_cmFunc.h)(0x5490CFC7)
+I (system_LPC43xx.h)(0x5490CFC8)
+I (chirp.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (smlink.h)(0x5490CFC8)
+I (pixyvals.h)(0x5490CFC8)

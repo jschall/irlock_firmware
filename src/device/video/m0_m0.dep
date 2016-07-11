@@ -1,0 +1,66 @@
+Dependencies for Project 'm0', Target 'm0': (DO NOT MODIFY !)
+F (.\main_m0.c)(0x5490CFC8)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\libpixy -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\m0\main_m0.o --list_dir ".\\" --list --omf_browse .\m0\main_m0.crf --depend .\m0\main_m0.d)
+I (..\libpixy\debug.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5346D4F4)
+I (..\libpixy\debug_frmwrk.h)(0x5490CFC7)
+I (..\libpixy\lpc43xx_uart.h)(0x5490CFC7)
+I (..\libpixy\lpc43xx.h)(0x5490CFC7)
+I (..\libpixy\core_cm0.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (..\libpixy\core_cmInstr.h)(0x5490CFC7)
+I (..\libpixy\core_cmFunc.h)(0x5490CFC7)
+I (..\libpixy\system_LPC43xx.h)(0x5490CFC8)
+I (..\libpixy\lpc_types.h)(0x5490CFC7)
+I (..\libpixy\chirp.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\libpixy\cycletimer.h)(0x5490CFC7)
+I (..\libpixy\pixyvals.h)(0x5490CFC8)
+I (..\libpixy\exec_m0.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (..\libpixy\frame_m0.h)(0x5490CFC7)
+I (..\libpixy\cameravals.h)(0x5490E40F)
+I (..\libpixy\rls_m0.h)(0x5490CFC8)
+F (..\libpixy\libpixy_m0.lib)(0x54BD513F)()
+F (.\startup_LPC43xx_m0.s)(0x5490CFC9)(--cpu Cortex-M0 --li -g --16 --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include--pd "NO_CRP SETA 1" --pd "IPC_SLAVE SETA 1"--list .\startup_lpc43xx_m0.lst --xref -o .\m0\startup_lpc43xx_m0.o --depend .\m0\startup_lpc43xx_m0.d)
+F (..\libpixy\qqueue.c)(0x5490CFC8)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\libpixy -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\m0\qqueue.o --list_dir ".\\" --list --omf_browse .\m0\qqueue.crf --depend .\m0\qqueue.d)
+I (..\..\common\qqueue.h)(0x5490CFC3)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (..\libpixy\pixyvals.h)(0x5490CFC8)
+F (..\libpixy\exec_m0.c)(0x5490CFC7)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\libpixy -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\m0\exec_m0.o --list_dir ".\\" --list --omf_browse .\m0\exec_m0.crf --depend .\m0\exec_m0.d)
+I (..\libpixy\pixyvals.h)(0x5490CFC8)
+I (..\libpixy\chirp.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\libpixy\exec_m0.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (..\libpixy\rls_m0.h)(0x5490CFC8)
+F (..\libpixy\frame_m0.c)(0x5490CFC7)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\libpixy -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\m0\frame_m0.o --list_dir ".\\" --list --omf_browse .\m0\frame_m0.crf --depend .\m0\frame_m0.d)
+I (..\libpixy\chirp.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\libpixy\frame_m0.h)(0x5490CFC7)
+I (..\libpixy\cameravals.h)(0x5490E40F)
+I (..\libpixy\lpc43xx.h)(0x5490CFC7)
+I (..\libpixy\core_cm0.h)(0x5490CFC7)
+I (..\libpixy\core_cmInstr.h)(0x5490CFC7)
+I (..\libpixy\core_cmFunc.h)(0x5490CFC7)
+I (..\libpixy\system_LPC43xx.h)(0x5490CFC8)
+F (..\libpixy\rls_m0.c)(0x5492360A)(-c --cpu Cortex-M0 -D__MICROLIB --li -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\" -I. -I..\libpixy -I..\..\common-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-DCORE_M0 -DIPC_SLAVE -DPIXY-o .\m0\rls_m0.o --list_dir ".\\" --list --omf_browse .\m0\rls_m0.crf --depend .\m0\rls_m0.d)
+I (..\libpixy\rls_m0.h)(0x5490CFC8)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5346D4F4)
+I (..\libpixy\frame_m0.h)(0x5490CFC7)
+I (..\libpixy\cameravals.h)(0x5490E40F)
+I (..\libpixy\lpc43xx.h)(0x5490CFC7)
+I (..\libpixy\core_cm0.h)(0x5490CFC7)
+I (..\libpixy\core_cmInstr.h)(0x5490CFC7)
+I (..\libpixy\core_cmFunc.h)(0x5490CFC7)
+I (..\libpixy\system_LPC43xx.h)(0x5490CFC8)
+I (..\libpixy\chirp.h)(0x5490CFC7)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5346D4F4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5346D4F4)
+I (..\..\common\qqueue.h)(0x5490CFC3)

@@ -1,0 +1,7 @@
+--create .\libpixy_m0.lib
+.\debug_frmwrk.o
+.\ipc_mbx.o
+.\lpc43xx_uart.o
+.\debug.o
+.\chirp.o
+.\smlink.o

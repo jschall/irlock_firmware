@@ -1,0 +1,3331 @@
+L 1 "chirp.c"
+N//
+N// begin license header
+N//
+N// This file is part of Pixy CMUcam5 or "Pixy" for short
+N//
+N// All Pixy source code is provided under the terms of the
+N// GNU General Public License v2 (http://www.gnu.org/licenses/gpl-2.0.html).
+N// Those wishing to use Pixy source code, software and/or
+N// technologies under different licensing terms should contact us at
+N// cmucam@cs.cmu.edu. Such licensing terms are available for
+N// all portions of the Pixy codebase presented here.
+N//
+N// end license header
+N//
+N
+N#include <string.h>
+L 1 "C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h" 1
+N/* string.h: ANSI 'C' (X3J11 Oct 88) library header, section 4.11 */
+N/* Copyright (C) Codemist Ltd., 1988-1993.                        */
+N/* Copyright 1991-1993 ARM Limited. All rights reserved.          */
+N/* version 0.04 */
+N
+N/*
+N * RCS $Revision: 177844 $
+N * Checkin $Date: 2012-11-21 11:51:12 +0000 (Wed, 21 Nov 2012) $
+N */
+N
+N/*
+N * string.h declares one type and several functions, and defines one macro
+N * useful for manipulating character arrays and other objects treated as
+N * character arrays. Various methods are used for determining the lengths of
+N * the arrays, but in all cases a char * or void * argument points to the
+N * initial (lowest addresses) character of the array. If an array is written
+N * beyond the end of an object, the behaviour is undefined.
+N */
+N
+N#ifndef __string_h
+N#define __string_h
+N#define __ARMCLIB_VERSION 5040049
+N
+N#define _ARMABI __declspec(__nothrow)
+N
+N  #ifndef __STRING_DECLS
+N  #define __STRING_DECLS
+N
+N    #undef __CLIBNS
+N
+N    #ifdef __cplusplus
+S        namespace std {
+S        #define __CLIBNS std::
+S        extern "C" {
+N    #else
+N      #define __CLIBNS
+N    #endif  /* __cplusplus */
+N
+N#if defined(__cplusplus) || !defined(__STRICT_ANSI__)
+X#if 0L || !0L
+N /* unconditional in C++ and non-strict C for consistency of debug info */
+N  typedef unsigned int size_t;
+N#elif !defined(__size_t)
+S  #define __size_t 1
+S  typedef unsigned int size_t;   /* see <stddef.h> */
+N#endif
+N
+N#undef NULL
+N#define NULL 0                   /* see <stddef.h> */
+N
+Nextern _ARMABI void *memcpy(void * __restrict /*s1*/,
+Xextern __declspec(__nothrow) void *memcpy(void * __restrict  ,
+N                    const void * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies n characters from the object pointed to by s2 into the object
+N    * pointed to by s1. If copying takes place between objects that overlap,
+N    * the behaviour is undefined.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI void *memmove(void * /*s1*/,
+Xextern __declspec(__nothrow) void *memmove(void *  ,
+N                    const void * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies n characters from the object pointed to by s2 into the object
+N    * pointed to by s1. Copying takes place as if the n characters from the
+N    * object pointed to by s2 are first copied into a temporary array of n
+N    * characters that does not overlap the objects pointed to by s1 and s2,
+N    * and then the n characters from the temporary array are copied into the
+N    * object pointed to by s1.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI char *strcpy(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strcpy(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies the string pointed to by s2 (including the terminating nul
+N    * character) into the array pointed to by s1. If copying takes place
+N    * between objects that overlap, the behaviour is undefined.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI char *strncpy(char * __restrict /*s1*/, const char * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strncpy(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies not more than n characters (characters that follow a null
+N    * character are not copied) from the array pointed to by s2 into the array
+N    * pointed to by s1. If copying takes place between objects that overlap,
+N    * the behaviour is undefined.
+N    * Returns: the value of s1.
+N    */
+N
+Nextern _ARMABI char *strcat(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strcat(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * appends a copy of the string pointed to by s2 (including the terminating
+N    * null character) to the end of the string pointed to by s1. The initial
+N    * character of s2 overwrites the null character at the end of s1.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI char *strncat(char * __restrict /*s1*/, const char * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strncat(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * appends not more than n characters (a null character and characters that
+N    * follow it are not appended) from the array pointed to by s2 to the end of
+N    * the string pointed to by s1. The initial character of s2 overwrites the
+N    * null character at the end of s1. A terminating null character is always
+N    * appended to the result.
+N    * Returns: the value of s1.
+N    */
+N
+N/*
+N * The sign of a nonzero value returned by the comparison functions is
+N * determined by the sign of the difference between the values of the first
+N * pair of characters (both interpreted as unsigned char) that differ in the
+N * objects being compared.
+N */
+N
+Nextern _ARMABI int memcmp(const void * /*s1*/, const void * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int memcmp(const void *  , const void *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the first n characters of the object pointed to by s1 to the
+N    * first n characters of the object pointed to by s2.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the object pointed to by s1 is greater than, equal to, or
+N    *          less than the object pointed to by s2.
+N    */
+Nextern _ARMABI int strcmp(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strcmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the string pointed to by s1 to the string pointed to by s2.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strncmp(const char * /*s1*/, const char * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strncmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares not more than n characters (characters that follow a null
+N    * character are not compared) from the array pointed to by s1 to the array
+N    * pointed to by s2.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strcasecmp(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strcasecmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the string pointed to by s1 to the string pointed to by s2,
+N    * case-insensitively as defined by the current locale.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strncasecmp(const char * /*s1*/, const char * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strncasecmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares not more than n characters (characters that follow a null
+N    * character are not compared) from the array pointed to by s1 to the array
+N    * pointed to by s2, case-insensitively as defined by the current locale.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strcoll(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strcoll(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the string pointed to by s1 to the string pointed to by s2, both
+N    * interpreted as appropriate to the LC_COLLATE category of the current
+N    * locale.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2 when both are interpreted
+N    *          as appropriate to the current locale.
+N    */
+N
+Nextern _ARMABI size_t strxfrm(char * __restrict /*s1*/, const char * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(2)));
+Xextern __declspec(__nothrow) size_t strxfrm(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
+N   /*
+N    * transforms the string pointed to by s2 and places the resulting string
+N    * into the array pointed to by s1. The transformation function is such that
+N    * if the strcmp function is applied to two transformed strings, it returns
+N    * a value greater than, equal to or less than zero, corresponding to the
+N    * result of the strcoll function applied to the same two original strings.
+N    * No more than n characters are placed into the resulting array pointed to
+N    * by s1, including the terminating null character. If n is zero, s1 is
+N    * permitted to be a null pointer. If copying takes place between objects
+N    * that overlap, the behaviour is undefined.
+N    * Returns: The length of the transformed string is returned (not including
+N    *          the terminating null character). If the value returned is n or
+N    *          more, the contents of the array pointed to by s1 are
+N    *          indeterminate.
+N    */
+N
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const void *memchr(const void * /*s*/, int /*c*/, size_t /*n*/) __attribute__((__nonnull__(1)));
+Sextern "C++" void *memchr(void * __s, int __c, size_t __n) __attribute__((__nonnull__(1)));
+Sextern "C++" inline void *memchr(void * __s, int __c, size_t __n)
+S    { return const_cast<void *>(memchr(const_cast<const void *>(__s), __c, __n)); }
+N#else
+Nextern _ARMABI void *memchr(const void * /*s*/, int /*c*/, size_t /*n*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) void *memchr(const void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
+N#endif
+N   /*
+N    * locates the first occurence of c (converted to an unsigned char) in the
+N    * initial n characters (each interpreted as unsigned char) of the object
+N    * pointed to by s.
+N    * Returns: a pointer to the located character, or a null pointer if the
+N    *          character does not occur in the object.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Sextern "C++" char *strchr(char * __s, int __c) __attribute__((__nonnull__(1)));
+Sextern "C++" inline char *strchr(char * __s, int __c)
+S    { return const_cast<char *>(strchr(const_cast<const char *>(__s), __c)); }
+N#else
+Nextern _ARMABI char *strchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) char *strchr(const char *  , int  ) __attribute__((__nonnull__(1)));
+N#endif
+N   /*
+N    * locates the first occurence of c (converted to an char) in the string
+N    * pointed to by s (including the terminating null character).
+N    * Returns: a pointer to the located character, or a null pointer if the
+N    *          character does not occur in the string.
+N    */
+N
+Nextern _ARMABI size_t strcspn(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strcspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * computes the length of the initial segment of the string pointed to by s1
+N    * which consists entirely of characters not from the string pointed to by
+N    * s2. The terminating null character is not considered part of s2.
+N    * Returns: the length of the segment.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strpbrk(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Sextern "C++" char *strpbrk(char * __s1, const char * __s2) __attribute__((__nonnull__(1,2)));
+Sextern "C++" inline char *strpbrk(char * __s1, const char * __s2)
+S    { return const_cast<char *>(strpbrk(const_cast<const char *>(__s1), __s2)); }
+N#else
+Nextern _ARMABI char *strpbrk(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strpbrk(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N#endif
+N   /*
+N    * locates the first occurence in the string pointed to by s1 of any
+N    * character from the string pointed to by s2.
+N    * Returns: returns a pointer to the character, or a null pointer if no
+N    *          character form s2 occurs in s1.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strrchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Sextern "C++" char *strrchr(char * __s, int __c) __attribute__((__nonnull__(1)));
+Sextern "C++" inline char *strrchr(char * __s, int __c)
+S    { return const_cast<char *>(strrchr(const_cast<const char *>(__s), __c)); }
+N#else
+Nextern _ARMABI char *strrchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) char *strrchr(const char *  , int  ) __attribute__((__nonnull__(1)));
+N#endif
+N   /*
+N    * locates the last occurence of c (converted to a char) in the string
+N    * pointed to by s. The terminating null character is considered part of
+N    * the string.
+N    * Returns: returns a pointer to the character, or a null pointer if c does
+N    *          not occur in the string.
+N    */
+N
+Nextern _ARMABI size_t strspn(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * computes the length of the initial segment of the string pointed to by s1
+N    * which consists entirely of characters from the string pointed to by S2
+N    * Returns: the length of the segment.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strstr(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Sextern "C++" char *strstr(char * __s1, const char * __s2) __attribute__((__nonnull__(1,2)));
+Sextern "C++" inline char *strstr(char * __s1, const char * __s2)
+S    { return const_cast<char *>(strstr(const_cast<const char *>(__s1), __s2)); }
+N#else
+Nextern _ARMABI char *strstr(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strstr(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N#endif
+N   /*
+N    * locates the first occurence in the string pointed to by s1 of the
+N    * sequence of characters (excluding the terminating null character) in the
+N    * string pointed to by s2.
+N    * Returns: a pointer to the located string, or a null pointer if the string
+N    *          is not found.
+N    */
+N
+Nextern _ARMABI char *strtok(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(2)));
+Xextern __declspec(__nothrow) char *strtok(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(2)));
+Nextern _ARMABI char *_strtok_r(char * /*s1*/, const char * /*s2*/, char ** /*ptr*/) __attribute__((__nonnull__(2,3)));
+Xextern __declspec(__nothrow) char *_strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
+N#ifndef __STRICT_ANSI__
+Nextern _ARMABI char *strtok_r(char * /*s1*/, const char * /*s2*/, char ** /*ptr*/) __attribute__((__nonnull__(2,3)));
+Xextern __declspec(__nothrow) char *strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
+N#endif
+N   /*
+N    * A sequence of calls to the strtok function breaks the string pointed to
+N    * by s1 into a sequence of tokens, each of which is delimited by a
+N    * character from the string pointed to by s2. The first call in the
+N    * sequence has s1 as its first argument, and is followed by calls with a
+N    * null pointer as their first argument. The separator string pointed to by
+N    * s2 may be different from call to call.
+N    * The first call in the sequence searches for the first character that is
+N    * not contained in the current separator string s2. If no such character
+N    * is found, then there are no tokens in s1 and the strtok function returns
+N    * a null pointer. If such a character is found, it is the start of the
+N    * first token.
+N    * The strtok function then searches from there for a character that is
+N    * contained in the current separator string. If no such character is found,
+N    * the current token extends to the end of the string pointed to by s1, and
+N    * subsequent searches for a token will fail. If such a character is found,
+N    * it is overwritten by a null character, which terminates the current
+N    * token. The strtok function saves a pointer to the following character,
+N    * from which the next search for a token will start.
+N    * Each subsequent call, with a null pointer as the value for the first
+N    * argument, starts searching from the saved pointer and behaves as
+N    * described above.
+N    * Returns: pointer to the first character of a token, or a null pointer if
+N    *          there is no token.
+N    *
+N    * strtok_r() is a common extension which works exactly like
+N    * strtok(), but instead of storing its state in a hidden
+N    * library variable, requires the user to pass in a pointer to a
+N    * char * variable which will be used instead. Any sequence of
+N    * calls to strtok_r() passing the same char ** pointer should
+N    * behave exactly like the corresponding sequence of calls to
+N    * strtok(). This means that strtok_r() can safely be used in
+N    * multi-threaded programs, and also that you can tokenise two
+N    * strings in parallel.
+N    */
+N
+Nextern _ARMABI void *memset(void * /*s*/, int /*c*/, size_t /*n*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) void *memset(void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * copies the value of c (converted to an unsigned char) into each of the
+N    * first n charactes of the object pointed to by s.
+N    * Returns: the value of s.
+N    */
+Nextern _ARMABI char *strerror(int /*errnum*/);
+Xextern __declspec(__nothrow) char *strerror(int  );
+N   /*
+N    * maps the error number in errnum to an error message string.
+N    * Returns: a pointer to the string, the contents of which are
+N    *          implementation-defined. The array pointed to shall not be
+N    *          modified by the program, but may be overwritten by a
+N    *          subsequent call to the strerror function.
+N    */
+Nextern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) size_t strlen(const char *  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * computes the length of the string pointed to by s.
+N    * Returns: the number of characters that precede the terminating null
+N    *          character.
+N    */
+N
+Nextern _ARMABI size_t strlcpy(char * /*dst*/, const char * /*src*/, size_t /*len*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strlcpy(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies the string src into the string dst, using no more than
+N    * len bytes of dst. Always null-terminates dst _within the
+N    * length len (i.e. will copy at most len-1 bytes of string plus
+N    * a NUL), unless len is actually zero.
+N    * 
+N    * Return value is the length of the string that _would_ have
+N    * been written, i.e. the length of src. Thus, the operation
+N    * succeeded without truncation if and only if ret < len;
+N    * otherwise, the value in ret tells you how big to make dst if
+N    * you decide to reallocate it. (That value does _not_ include
+N    * the NUL.)
+N    * 
+N    * This is a BSD-derived library extension, which we are
+N    * permitted to declare in a standard header because ISO defines
+N    * function names beginning with 'str' as reserved for future
+N    * expansion of <string.h>.
+N    */
+N
+Nextern _ARMABI size_t strlcat(char * /*dst*/, const char * /*src*/, size_t /*len*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strlcat(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * concatenates the string src to the string dst, using no more
+N    * than len bytes of dst. Always null-terminates dst _within the
+N    * length len (i.e. will copy at most len-1 bytes of string plus
+N    * a NUL), unless len is actually zero.
+N    * 
+N    * Return value is the length of the string that _would_ have
+N    * been written, i.e. the length of src plus the original length
+N    * of dst. Thus, the operation succeeded without truncation if
+N    * and only if ret < len; otherwise, the value in ret tells you
+N    * how big to make dst if you decide to reallocate it. (That
+N    * value does _not_ include the NUL.)
+N    * 
+N    * If no NUL is encountered within the first len bytes of dst,
+N    * then the length of dst is considered to have been equal to
+N    * len for the purposes of the return value (as if there were a
+N    * NUL at dst[len]). Thus, the return value in this case is len
+N    * + strlen(src).
+N    * 
+N    * This is a BSD-derived library extension, which we are
+N    * permitted to declare in a standard header because ISO defines
+N    * function names beginning with 'str' as reserved for future
+N    * expansion of <string.h>.
+N    */
+N
+Nextern _ARMABI void _membitcpybl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpybl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpybb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpybb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpyhl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpyhl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpyhb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpyhb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpywl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpywl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpywb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpywb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovebl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovebl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovebb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovebb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovehl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovehl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovehb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovehb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovewl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovewl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovewb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovewb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+N    /*
+N     * Copies or moves a piece of memory from one place to another,
+N     * with one-bit granularity. So you can start or finish a copy
+N     * part way through a byte, and you can copy between regions
+N     * with different alignment within a byte.
+N     * 
+N     * All these functions have the same prototype: two void *
+N     * pointers for destination and source, then two integers
+N     * giving the bit offset from those pointers, and finally the
+N     * number of bits to copy.
+N     * 
+N     * Just like memcpy and memmove, the "cpy" functions copy as
+N     * fast as they can in the assumption that the memory regions
+N     * do not overlap, while the "move" functions cope correctly
+N     * with overlap.
+N     *
+N     * Treating memory as a stream of individual bits requires
+N     * defining a convention about what order those bits are
+N     * considered to be arranged in. The above functions support
+N     * multiple conventions:
+N     * 
+N     *  - the "bl" functions consider the unit of memory to be the
+N     *    byte, and consider the bits within each byte to be
+N     *    arranged in little-endian fashion, so that the LSB comes
+N     *    first. (For example, membitcpybl(a,b,0,7,1) would copy
+N     *    the MSB of the byte at b to the LSB of the byte at a.)
+N     * 
+N     *  - the "bb" functions consider the unit of memory to be the
+N     *    byte, and consider the bits within each byte to be
+N     *    arranged in big-endian fashion, so that the MSB comes
+N     *    first.
+N     * 
+N     *  - the "hl" functions consider the unit of memory to be the
+N     *    16-bit halfword, and consider the bits within each word
+N     *    to be arranged in little-endian fashion.
+N     * 
+N     *  - the "hb" functions consider the unit of memory to be the
+N     *    16-bit halfword, and consider the bits within each word
+N     *    to be arranged in big-endian fashion.
+N     * 
+N     *  - the "wl" functions consider the unit of memory to be the
+N     *    32-bit word, and consider the bits within each word to be
+N     *    arranged in little-endian fashion.
+N     * 
+N     *  - the "wb" functions consider the unit of memory to be the
+N     *    32-bit word, and consider the bits within each word to be
+N     *    arranged in big-endian fashion.
+N     */
+N
+N    #ifdef __cplusplus
+S         }  /* extern "C" */
+S      }  /* namespace std */
+N    #endif /* __cplusplus */
+N  #endif /* __STRING_DECLS */
+N
+N  #ifdef __cplusplus
+S    #ifndef __STRING_NO_EXPORTS
+S      using ::std::size_t;
+S      using ::std::memcpy;
+S      using ::std::memmove;
+S      using ::std::strcpy;
+S      using ::std::strncpy;
+S      using ::std::strcat;
+S      using ::std::strncat;
+S      using ::std::memcmp;
+S      using ::std::strcmp;
+S      using ::std::strncmp;
+S      using ::std::strcasecmp;
+S      using ::std::strncasecmp;
+S      using ::std::strcoll;
+S      using ::std::strxfrm;
+S      using ::std::memchr;
+S      using ::std::strchr;
+S      using ::std::strcspn;
+S      using ::std::strpbrk;
+S      using ::std::strrchr;
+S      using ::std::strspn;
+S      using ::std::strstr;
+S      using ::std::strtok;
+S#ifndef __STRICT_ANSI__
+S      using ::std::strtok_r;
+S#endif
+S      using ::std::_strtok_r;
+S      using ::std::memset;
+S      using ::std::strerror;
+S      using ::std::strlen;
+S      using ::std::strlcpy;
+S      using ::std::strlcat;
+S      using ::std::_membitcpybl;
+S      using ::std::_membitcpybb;
+S      using ::std::_membitcpyhl;
+S      using ::std::_membitcpyhb;
+S      using ::std::_membitcpywl;
+S      using ::std::_membitcpywb;
+S      using ::std::_membitmovebl;
+S      using ::std::_membitmovebb;
+S      using ::std::_membitmovehl;
+S      using ::std::_membitmovehb;
+S      using ::std::_membitmovewl;
+S      using ::std::_membitmovewb;
+S    #endif /* __STRING_NO_EXPORTS */
+N  #endif /* __cplusplus */
+N
+N#endif
+N
+N/* end of string.h */
+N
+L 17 "chirp.c" 2
+N#include "chirp.h"
+L 1 "chirp.h" 1
+N//
+N// begin license header
+N//
+N// This file is part of Pixy CMUcam5 or "Pixy" for short
+N//
+N// All Pixy source code is provided under the terms of the
+N// GNU General Public License v2 (http://www.gnu.org/licenses/gpl-2.0.html).
+N// Those wishing to use Pixy source code, software and/or
+N// technologies under different licensing terms should contact us at
+N// cmucam@cs.cmu.edu. Such licensing terms are available for
+N// all portions of the Pixy codebase presented here.
+N//
+N// end license header
+N//
+N
+N#ifndef CHIRP_H
+N#define CHIRP_H
+N
+N#include <stdint.h>
+L 1 "C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h" 1
+N/* Copyright (C) ARM Ltd., 1999 */
+N/* All rights reserved */
+N
+N/*
+N * RCS $Revision: 180721 $
+N * Checkin $Date: 2013-06-24 09:41:57 +0100 (Mon, 24 Jun 2013) $
+N * Revising $Author: agrant $
+N */
+N
+N#ifndef __stdint_h
+N#define __stdint_h
+N#define __ARMCLIB_VERSION 5040049
+N
+N/*
+N * Depending on compiler version __int64 or __INT64_TYPE__ should be defined.
+N */
+N#ifndef __int64
+N  #ifdef __INT64_TYPE__
+S    #define __int64 __INT64_TYPE__
+N  #endif
+N  /* On some architectures neither of these may be defined - if so, fall
+N     through and error out if used. */
+N#endif
+N
+N  #ifndef __STDINT_DECLS
+N  #define __STDINT_DECLS
+N
+N    #undef __CLIBNS
+N
+N    #ifdef __cplusplus
+S      namespace std {
+S          #define __CLIBNS std::
+S          extern "C" {
+N    #else
+N      #define __CLIBNS
+N    #endif  /* __cplusplus */
+N
+N
+N/*
+N * 'signed' is redundant below, except for 'signed char' and if
+N * the typedef is used to declare a bitfield.
+N * '__int64' is used instead of 'long long' so that this header
+N * can be used in --strict mode.
+N */
+N
+N    /* 7.18.1.1 */
+N
+N    /* exact-width signed integer types */
+Ntypedef   signed          char int8_t;
+Ntypedef   signed short     int int16_t;
+Ntypedef   signed           int int32_t;
+Ntypedef   signed       __int64 int64_t;
+N
+N    /* exact-width unsigned integer types */
+Ntypedef unsigned          char uint8_t;
+Ntypedef unsigned short     int uint16_t;
+Ntypedef unsigned           int uint32_t;
+Ntypedef unsigned       __int64 uint64_t;
+N
+N    /* 7.18.1.2 */
+N
+N    /* smallest type of at least n bits */
+N    /* minimum-width signed integer types */
+Ntypedef   signed          char int_least8_t;
+Ntypedef   signed short     int int_least16_t;
+Ntypedef   signed           int int_least32_t;
+Ntypedef   signed       __int64 int_least64_t;
+N
+N    /* minimum-width unsigned integer types */
+Ntypedef unsigned          char uint_least8_t;
+Ntypedef unsigned short     int uint_least16_t;
+Ntypedef unsigned           int uint_least32_t;
+Ntypedef unsigned       __int64 uint_least64_t;
+N
+N    /* 7.18.1.3 */
+N
+N    /* fastest minimum-width signed integer types */
+Ntypedef   signed           int int_fast8_t;
+Ntypedef   signed           int int_fast16_t;
+Ntypedef   signed           int int_fast32_t;
+Ntypedef   signed       __int64 int_fast64_t;
+N
+N    /* fastest minimum-width unsigned integer types */
+Ntypedef unsigned           int uint_fast8_t;
+Ntypedef unsigned           int uint_fast16_t;
+Ntypedef unsigned           int uint_fast32_t;
+Ntypedef unsigned       __int64 uint_fast64_t;
+N
+N    /* 7.18.1.4 integer types capable of holding object pointers */
+Ntypedef   signed           int intptr_t;
+Ntypedef unsigned           int uintptr_t;
+N
+N    /* 7.18.1.5 greatest-width integer types */
+Ntypedef   signed       __int64 intmax_t;
+Ntypedef unsigned       __int64 uintmax_t;
+N
+N
+N#if !defined(__cplusplus) || defined(__STDC_LIMIT_MACROS)
+X#if !0L || 0L
+N
+N    /* 7.18.2.1 */
+N
+N    /* minimum values of exact-width signed integer types */
+N#define INT8_MIN                   -128
+N#define INT16_MIN                -32768
+N#define INT32_MIN          (~0x7fffffff)   /* -2147483648 is unsigned */
+N#define INT64_MIN  __ESCAPE__(~0x7fffffffffffffffll) /* -9223372036854775808 is unsigned */
+N
+N    /* maximum values of exact-width signed integer types */
+N#define INT8_MAX                    127
+N#define INT16_MAX                 32767
+N#define INT32_MAX            2147483647
+N#define INT64_MAX  __ESCAPE__(9223372036854775807ll)
+N
+N    /* maximum values of exact-width unsigned integer types */
+N#define UINT8_MAX                   255
+N#define UINT16_MAX                65535
+N#define UINT32_MAX           4294967295u
+N#define UINT64_MAX __ESCAPE__(18446744073709551615ull)
+N
+N    /* 7.18.2.2 */
+N
+N    /* minimum values of minimum-width signed integer types */
+N#define INT_LEAST8_MIN                   -128
+N#define INT_LEAST16_MIN                -32768
+N#define INT_LEAST32_MIN          (~0x7fffffff)
+N#define INT_LEAST64_MIN  __ESCAPE__(~0x7fffffffffffffffll)
+N
+N    /* maximum values of minimum-width signed integer types */
+N#define INT_LEAST8_MAX                    127
+N#define INT_LEAST16_MAX                 32767
+N#define INT_LEAST32_MAX            2147483647
+N#define INT_LEAST64_MAX  __ESCAPE__(9223372036854775807ll)
+N
+N    /* maximum values of minimum-width unsigned integer types */
+N#define UINT_LEAST8_MAX                   255
+N#define UINT_LEAST16_MAX                65535
+N#define UINT_LEAST32_MAX           4294967295u
+N#define UINT_LEAST64_MAX __ESCAPE__(18446744073709551615ull)
+N
+N    /* 7.18.2.3 */
+N
+N    /* minimum values of fastest minimum-width signed integer types */
+N#define INT_FAST8_MIN           (~0x7fffffff)
+N#define INT_FAST16_MIN          (~0x7fffffff)
+N#define INT_FAST32_MIN          (~0x7fffffff)
+N#define INT_FAST64_MIN  __ESCAPE__(~0x7fffffffffffffffll)
+N
+N    /* maximum values of fastest minimum-width signed integer types */
+N#define INT_FAST8_MAX             2147483647
+N#define INT_FAST16_MAX            2147483647
+N#define INT_FAST32_MAX            2147483647
+N#define INT_FAST64_MAX  __ESCAPE__(9223372036854775807ll)
+N
+N    /* maximum values of fastest minimum-width unsigned integer types */
+N#define UINT_FAST8_MAX            4294967295u
+N#define UINT_FAST16_MAX           4294967295u
+N#define UINT_FAST32_MAX           4294967295u
+N#define UINT_FAST64_MAX __ESCAPE__(18446744073709551615ull)
+N
+N    /* 7.18.2.4 */
+N
+N    /* minimum value of pointer-holding signed integer type */
+N#define INTPTR_MIN (~0x7fffffff)
+N
+N    /* maximum value of pointer-holding signed integer type */
+N#define INTPTR_MAX   2147483647
+N
+N    /* maximum value of pointer-holding unsigned integer type */
+N#define UINTPTR_MAX  4294967295u
+N
+N    /* 7.18.2.5 */
+N
+N    /* minimum value of greatest-width signed integer type */
+N#define INTMAX_MIN  __ESCAPE__(~0x7fffffffffffffffll)
+N
+N    /* maximum value of greatest-width signed integer type */
+N#define INTMAX_MAX  __ESCAPE__(9223372036854775807ll)
+N
+N    /* maximum value of greatest-width unsigned integer type */
+N#define UINTMAX_MAX __ESCAPE__(18446744073709551615ull)
+N
+N    /* 7.18.3 */
+N
+N    /* limits of ptrdiff_t */
+N#define PTRDIFF_MIN (~0x7fffffff)
+N#define PTRDIFF_MAX   2147483647
+N
+N    /* limits of sig_atomic_t */
+N#define SIG_ATOMIC_MIN (~0x7fffffff)
+N#define SIG_ATOMIC_MAX   2147483647
+N
+N    /* limit of size_t */
+N#define SIZE_MAX 4294967295u
+N
+N    /* limits of wchar_t */
+N    /* NB we have to undef and redef because they're defined in both
+N     * stdint.h and wchar.h */
+N#undef WCHAR_MIN
+N#undef WCHAR_MAX
+N
+N#if defined(__WCHAR32) || (defined(__ARM_SIZEOF_WCHAR_T) && __ARM_SIZEOF_WCHAR_T == 4)
+X#if 0L || (0L && __ARM_SIZEOF_WCHAR_T == 4)
+S  #define WCHAR_MIN   0
+S  #define WCHAR_MAX   0xffffffffU
+N#else
+N  #define WCHAR_MIN   0
+N  #define WCHAR_MAX   65535
+N#endif
+N
+N    /* limits of wint_t */
+N#define WINT_MIN (~0x7fffffff)
+N#define WINT_MAX 2147483647
+N
+N#endif /* __STDC_LIMIT_MACROS */
+N
+N#if !defined(__cplusplus) || defined(__STDC_CONSTANT_MACROS)
+X#if !0L || 0L
+N
+N    /* 7.18.4.1 macros for minimum-width integer constants */
+N#define INT8_C(x)   (x)
+N#define INT16_C(x)  (x)
+N#define INT32_C(x)  (x)
+N#define INT64_C(x)  __ESCAPE__(x ## ll)
+N
+N#define UINT8_C(x)  (x ## u)
+N#define UINT16_C(x) (x ## u)
+N#define UINT32_C(x) (x ## u)
+N#define UINT64_C(x) __ESCAPE__(x ## ull)
+N
+N    /* 7.18.4.2 macros for greatest-width integer constants */
+N#define INTMAX_C(x)  __ESCAPE__(x ## ll)
+N#define UINTMAX_C(x) __ESCAPE__(x ## ull)
+N
+N#endif /* __STDC_CONSTANT_MACROS */
+N
+N    #ifdef __cplusplus
+S         }  /* extern "C" */
+S      }  /* namespace std */
+N    #endif /* __cplusplus */
+N  #endif /* __STDINT_DECLS */
+N
+N  #ifdef __cplusplus
+S    #ifndef __STDINT_NO_EXPORTS
+S      using ::std::int8_t;
+S      using ::std::int16_t;
+S      using ::std::int32_t;
+S      using ::std::int64_t;
+S      using ::std::uint8_t;
+S      using ::std::uint16_t;
+S      using ::std::uint32_t;
+S      using ::std::uint64_t;
+S      using ::std::int_least8_t;
+S      using ::std::int_least16_t;
+S      using ::std::int_least32_t;
+S      using ::std::int_least64_t;
+S      using ::std::uint_least8_t;
+S      using ::std::uint_least16_t;
+S      using ::std::uint_least32_t;
+S      using ::std::uint_least64_t;
+S      using ::std::int_fast8_t;
+S      using ::std::int_fast16_t;
+S      using ::std::int_fast32_t;
+S      using ::std::int_fast64_t;
+S      using ::std::uint_fast8_t;
+S      using ::std::uint_fast16_t;
+S      using ::std::uint_fast32_t;
+S      using ::std::uint_fast64_t;
+S      using ::std::intptr_t;
+S      using ::std::uintptr_t;
+S      using ::std::intmax_t;
+S      using ::std::uintmax_t;
+S    #endif 
+N  #endif /* __cplusplus */
+N
+N#endif /* __stdint_h */
+N
+N/* end of stdint.h */
+N
+N
+N
+L 20 "chirp.h" 2
+N#include <stdlib.h>
+L 1 "C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h" 1
+N/* stdlib.h: ANSI draft (X3J11 May 88) library header, section 4.10 */
+N/* Copyright (C) Codemist Ltd., 1988-1993.                          */
+N/* Copyright 1991-1998 ARM Limited. All rights reserved.            */
+N/*
+N * RCS $Revision: 180254 $
+N * Checkin $Date: 2013-06-03 17:00:28 +0100 (Mon, 03 Jun 2013) $
+N * Revising $Author: agrant $
+N */
+N 
+N/*
+N * stdlib.h declares four types, several general purpose functions,
+N * and defines several macros.
+N */
+N
+N#ifndef __stdlib_h
+N#define __stdlib_h
+N#define __ARMCLIB_VERSION 5040049
+N
+N/*
+N * Depending on compiler version __int64 or __INT64_TYPE__ should be defined.
+N */
+N#ifndef __int64
+N  #ifdef __INT64_TYPE__
+S    #define __int64 __INT64_TYPE__
+N  #endif
+N  /* On some architectures neither of these may be defined - if so, fall
+N     through and error out if used. */
+N#endif
+N
+N#define _ARMABI __declspec(__nothrow)
+N#define _ARMABI_PURE __declspec(__nothrow) __attribute__((const))
+N#define _ARMABI_NORETURN __declspec(__nothrow) __declspec(__noreturn)
+N#define _ARMABI_THROW
+N
+N  #ifndef __STDLIB_DECLS
+N  #define __STDLIB_DECLS
+N
+N  /*
+N   * Some of these declarations are new in C99.  To access them in C++
+N   * you can use -D__USE_C99_STDLIB (or -D__USE_C99ALL).
+N   */
+N  #ifndef __USE_C99_STDLIB
+N    #if defined(__USE_C99_ALL) || (defined(__STDC_VERSION__) && 199901L <= __STDC_VERSION__)
+X    #if 0L || (1L && 199901L <= 199409L)
+S      #define __USE_C99_STDLIB 1
+N    #endif
+N  #endif
+N
+N    #undef __CLIBNS
+N
+N    #ifdef __cplusplus
+S      namespace std {
+S          #define __CLIBNS ::std::
+S          extern "C" {
+N    #else
+N      #define __CLIBNS
+N    #endif  /* __cplusplus */
+N
+N#if defined(__cplusplus) || !defined(__STRICT_ANSI__)
+X#if 0L || !0L
+N /* unconditional in C++ and non-strict C for consistency of debug info */
+N  typedef unsigned int size_t;
+N#elif !defined(__size_t)
+S  #define __size_t 1
+S  typedef unsigned int size_t;   /* see <stddef.h> */
+N#endif
+N
+N#undef NULL
+N#define NULL 0                   /* see <stddef.h> */
+N
+N#ifndef __cplusplus  /* wchar_t is a builtin type for C++ */
+N  #if !defined(__STRICT_ANSI__)
+X  #if !0L
+N   /* unconditional in non-strict C for consistency of debug info */
+N   #if defined(__WCHAR32) || (defined(__ARM_SIZEOF_WCHAR_T) && __ARM_SIZEOF_WCHAR_T == 4)
+X   #if 0L || (0L && __ARM_SIZEOF_WCHAR_T == 4)
+S    typedef unsigned int wchar_t; /* see <stddef.h> */
+N   #else
+N    typedef unsigned short wchar_t; /* see <stddef.h> */
+N   #endif
+N  #elif !defined(__wchar_t)
+S    #define __wchar_t 1
+S   #if defined(__WCHAR32) || (defined(__ARM_SIZEOF_WCHAR_T) && __ARM_SIZEOF_WCHAR_T == 4)
+S    typedef unsigned int wchar_t; /* see <stddef.h> */
+S   #else
+S    typedef unsigned short wchar_t; /* see <stddef.h> */
+S   #endif
+N  #endif
+N#endif
+N
+Ntypedef struct div_t { int quot, rem; } div_t;
+N   /* type of the value returned by the div function. */
+Ntypedef struct ldiv_t { long int quot, rem; } ldiv_t;
+N   /* type of the value returned by the ldiv function. */
+N#if !defined(__STRICT_ANSI__) || __USE_C99_STDLIB
+X#if !0L || __USE_C99_STDLIB
+Ntypedef struct lldiv_t { __int64 quot, rem; } lldiv_t;
+N   /* type of the value returned by the lldiv function. */
+N#endif
+N
+N#ifdef __EXIT_FAILURE
+S#  define EXIT_FAILURE __EXIT_FAILURE
+S   /*
+S    * an integral expression which may be used as an argument to the exit
+S    * function to return unsuccessful termination status to the host
+S    * environment.
+S    */
+N#else
+N#  define EXIT_FAILURE 1  /* unixoid */
+N#endif
+N#define EXIT_SUCCESS 0
+N   /*
+N    * an integral expression which may be used as an argument to the exit
+N    * function to return successful termination status to the host
+N    * environment.
+N    */
+N
+N   /*
+N    * Defining __USE_ANSI_EXAMPLE_RAND at compile time switches to
+N    * the example implementation of rand() and srand() provided in
+N    * the ANSI C standard. This implementation is very poor, but is
+N    * provided for completeness.
+N    */
+N#ifdef __USE_ANSI_EXAMPLE_RAND
+S#define srand _ANSI_srand
+S#define rand _ANSI_rand
+S#define RAND_MAX 0x7fff
+N#else
+N#define RAND_MAX 0x7fffffff
+N#endif
+N   /*
+N    * RAND_MAX: an integral constant expression, the value of which
+N    * is the maximum value returned by the rand function.
+N    */
+Nextern _ARMABI int __aeabi_MB_CUR_MAX(void);
+Xextern __declspec(__nothrow) int __aeabi_MB_CUR_MAX(void);
+N#define MB_CUR_MAX ( __aeabi_MB_CUR_MAX() )
+N   /*
+N    * a positive integer expression whose value is the maximum number of bytes
+N    * in a multibyte character for the extended character set specified by the
+N    * current locale (category LC_CTYPE), and whose value is never greater
+N    * than MB_LEN_MAX.
+N    */
+N
+N   /*
+N    * If the compiler supports signalling nans as per N965 then it
+N    * will define __SUPPORT_SNAN__, in which case a user may define
+N    * _WANT_SNAN in order to obtain a compliant version of the strtod
+N    * family of functions.
+N    */
+N#if defined(__SUPPORT_SNAN__) && defined(_WANT_SNAN)
+X#if 0L && 0L
+S#pragma import(__use_snan)
+N#endif
+N
+Nextern _ARMABI double atof(const char * /*nptr*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) double atof(const char *  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * converts the initial part of the string pointed to by nptr to double
+N    * representation.
+N    * Returns: the converted value.
+N    */
+Nextern _ARMABI int atoi(const char * /*nptr*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) int atoi(const char *  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * converts the initial part of the string pointed to by nptr to int
+N    * representation.
+N    * Returns: the converted value.
+N    */
+Nextern _ARMABI long int atol(const char * /*nptr*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) long int atol(const char *  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * converts the initial part of the string pointed to by nptr to long int
+N    * representation.
+N    * Returns: the converted value.
+N    */
+N#if !defined(__STRICT_ANSI__) || __USE_C99_STDLIB
+X#if !0L || __USE_C99_STDLIB
+Nextern _ARMABI __int64 atoll(const char * /*nptr*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) __int64 atoll(const char *  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * converts the initial part of the string pointed to by nptr to
+N    * long long int representation.
+N    * Returns: the converted value.
+N    */
+N#endif
+N
+Nextern _ARMABI double strtod(const char * __restrict /*nptr*/, char ** __restrict /*endptr*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) double strtod(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * converts the initial part of the string pointed to by nptr to double
+N    * representation. First it decomposes the input string into three parts:
+N    * an initial, possibly empty, sequence of white-space characters (as
+N    * specified by the isspace function), a subject sequence resembling a
+N    * floating point constant; and a final string of one or more unrecognised
+N    * characters, including the terminating null character of the input string.
+N    * Then it attempts to convert the subject sequence to a floating point
+N    * number, and returns the result. A pointer to the final string is stored
+N    * in the object pointed to by endptr, provided that endptr is not a null
+N    * pointer.
+N    * Returns: the converted value if any. If no conversion could be performed,
+N    *          zero is returned. If the correct value is outside the range of
+N    *          representable values, plus or minus HUGE_VAL is returned
+N    *          (according to the sign of the value), and the value of the macro
+N    *          ERANGE is stored in errno. If the correct value would cause
+N    *          underflow, zero is returned and the value of the macro ERANGE is
+N    *          stored in errno.
+N    */
+N#if !defined(__STRICT_ANSI__) || __USE_C99_STDLIB
+X#if !0L || __USE_C99_STDLIB
+Nextern _ARMABI float strtof(const char * __restrict /*nptr*/, char ** __restrict /*endptr*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) float strtof(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
+Nextern _ARMABI long double strtold(const char * __restrict /*nptr*/, char ** __restrict /*endptr*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) long double strtold(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * same as strtod, but return float and long double respectively.
+N    */
+N#endif
+Nextern _ARMABI long int strtol(const char * __restrict /*nptr*/,
+Xextern __declspec(__nothrow) long int strtol(const char * __restrict  ,
+N                        char ** __restrict /*endptr*/, int /*base*/) __attribute__((__nonnull__(1)));
+N   /*
+N    * converts the initial part of the string pointed to by nptr to long int
+N    * representation. First it decomposes the input string into three parts:
+N    * an initial, possibly empty, sequence of white-space characters (as
+N    * specified by the isspace function), a subject sequence resembling an
+N    * integer represented in some radix determined by the value of base, and a
+N    * final string of one or more unrecognised characters, including the
+N    * terminating null character of the input string. Then it attempts to
+N    * convert the subject sequence to an integer, and returns the result.
+N    * If the value of base is 0, the expected form of the subject sequence is
+N    * that of an integer constant (described in ANSI Draft, section 3.1.3.2),
+N    * optionally preceded by a '+' or '-' sign, but not including an integer
+N    * suffix. If the value of base is between 2 and 36, the expected form of
+N    * the subject sequence is a sequence of letters and digits representing an
+N    * integer with the radix specified by base, optionally preceded by a plus
+N    * or minus sign, but not including an integer suffix. The letters from a
+N    * (or A) through z (or Z) are ascribed the values 10 to 35; only letters
+N    * whose ascribed values are less than that of the base are permitted. If
+N    * the value of base is 16, the characters 0x or 0X may optionally precede
+N    * the sequence of letters and digits following the sign if present.
+N    * A pointer to the final string is stored in the object
+N    * pointed to by endptr, provided that endptr is not a null pointer.
+N    * Returns: the converted value if any. If no conversion could be performed,
+N    *          zero is returned and nptr is stored in *endptr.
+N    *          If the correct value is outside the range of
+N    *          representable values, LONG_MAX or LONG_MIN is returned
+N    *          (according to the sign of the value), and the value of the
+N    *          macro ERANGE is stored in errno.
+N    */
+Nextern _ARMABI unsigned long int strtoul(const char * __restrict /*nptr*/,
+Xextern __declspec(__nothrow) unsigned long int strtoul(const char * __restrict  ,
+N                                       char ** __restrict /*endptr*/, int /*base*/) __attribute__((__nonnull__(1)));
+N   /*
+N    * converts the initial part of the string pointed to by nptr to unsigned
+N    * long int representation. First it decomposes the input string into three
+N    * parts: an initial, possibly empty, sequence of white-space characters (as
+N    * determined by the isspace function), a subject sequence resembling an
+N    * unsigned integer represented in some radix determined by the value of
+N    * base, and a final string of one or more unrecognised characters,
+N    * including the terminating null character of the input string. Then it
+N    * attempts to convert the subject sequence to an unsigned integer, and
+N    * returns the result. If the value of base is zero, the expected form of
+N    * the subject sequence is that of an integer constant (described in ANSI
+N    * Draft, section 3.1.3.2), optionally preceded by a '+' or '-' sign, but
+N    * not including an integer suffix. If the value of base is between 2 and
+N    * 36, the expected form of the subject sequence is a sequence of letters
+N    * and digits representing an integer with the radix specified by base,
+N    * optionally preceded by a '+' or '-' sign, but not including an integer
+N    * suffix. The letters from a (or A) through z (or Z) stand for the values
+N    * 10 to 35; only letters whose ascribed values are less than that of the
+N    * base are permitted. If the value of base is 16, the characters 0x or 0X
+N    * may optionally precede the sequence of letters and digits following the
+N    * sign, if present. A pointer to the final string is stored in the object
+N    * pointed to by endptr, provided that endptr is not a null pointer.
+N    * Returns: the converted value if any. If no conversion could be performed,
+N    *          zero is returned and nptr is stored in *endptr.
+N    *          If the correct value is outside the range of
+N    *          representable values, ULONG_MAX is returned, and the value of
+N    *          the macro ERANGE is stored in errno.
+N    */
+N
+N/* C90 reserves all names beginning with 'str' */
+Nextern _ARMABI __int64 strtoll(const char * __restrict /*nptr*/,
+Xextern __declspec(__nothrow) __int64 strtoll(const char * __restrict  ,
+N                               char ** __restrict /*endptr*/, int /*base*/) __attribute__((__nonnull__(1)));
+N   /*
+N    * as strtol but returns a long long int value.  If the correct value is
+N    * outside the range of representable values,  LLONG_MAX or LLONG_MIN is
+N    * returned (according to the sign of the value), and the value of the
+N    * macro ERANGE is stored in errno.
+N    */
+Nextern _ARMABI unsigned __int64 strtoull(const char * __restrict /*nptr*/,
+Xextern __declspec(__nothrow) unsigned __int64 strtoull(const char * __restrict  ,
+N                                         char ** __restrict /*endptr*/, int /*base*/) __attribute__((__nonnull__(1)));
+N   /*
+N    * as strtoul but returns an unsigned long long int value.  If the correct
+N    * value is outside the range of representable values, ULLONG_MAX is returned,
+N    * and the value of the macro ERANGE is stored in errno.
+N    */
+N
+Nextern _ARMABI int rand(void);
+Xextern __declspec(__nothrow) int rand(void);
+N   /*
+N    * Computes a sequence of pseudo-random integers in the range 0 to RAND_MAX.
+N    * Uses an additive generator (Mitchell & Moore) of the form:
+N    *   Xn = (X[n-24] + X[n-55]) MOD 2^31
+N    * This is described in section 3.2.2 of Knuth, vol 2. It's period is
+N    * in excess of 2^55 and its randomness properties, though unproven, are
+N    * conjectured to be good. Empirical testing since 1958 has shown no flaws.
+N    * Returns: a pseudo-random integer.
+N    */
+Nextern _ARMABI void srand(unsigned int /*seed*/);
+Xextern __declspec(__nothrow) void srand(unsigned int  );
+N   /*
+N    * uses its argument as a seed for a new sequence of pseudo-random numbers
+N    * to be returned by subsequent calls to rand. If srand is then called with
+N    * the same seed value, the sequence of pseudo-random numbers is repeated.
+N    * If rand is called before any calls to srand have been made, the same
+N    * sequence is generated as when srand is first called with a seed value
+N    * of 1.
+N    */
+N
+Nstruct _rand_state { int __x[57]; };
+Nextern _ARMABI int _rand_r(struct _rand_state *);
+Xextern __declspec(__nothrow) int _rand_r(struct _rand_state *);
+Nextern _ARMABI void _srand_r(struct _rand_state *, unsigned int);
+Xextern __declspec(__nothrow) void _srand_r(struct _rand_state *, unsigned int);
+Nstruct _ANSI_rand_state { int __x[1]; };
+Nextern _ARMABI int _ANSI_rand_r(struct _ANSI_rand_state *);
+Xextern __declspec(__nothrow) int _ANSI_rand_r(struct _ANSI_rand_state *);
+Nextern _ARMABI void _ANSI_srand_r(struct _ANSI_rand_state *, unsigned int);
+Xextern __declspec(__nothrow) void _ANSI_srand_r(struct _ANSI_rand_state *, unsigned int);
+N   /*
+N    * Re-entrant variants of both flavours of rand, which operate on
+N    * an explicitly supplied state buffer.
+N    */
+N
+Nextern _ARMABI void *calloc(size_t /*nmemb*/, size_t /*size*/);
+Xextern __declspec(__nothrow) void *calloc(size_t  , size_t  );
+N   /*
+N    * allocates space for an array of nmemb objects, each of whose size is
+N    * 'size'. The space is initialised to all bits zero.
+N    * Returns: either a null pointer or a pointer to the allocated space.
+N    */
+Nextern _ARMABI void free(void * /*ptr*/);
+Xextern __declspec(__nothrow) void free(void *  );
+N   /*
+N    * causes the space pointed to by ptr to be deallocated (i.e., made
+N    * available for further allocation). If ptr is a null pointer, no action
+N    * occurs. Otherwise, if ptr does not match a pointer earlier returned by
+N    * calloc, malloc or realloc or if the space has been deallocated by a call
+N    * to free or realloc, the behaviour is undefined.
+N    */
+Nextern _ARMABI void *malloc(size_t /*size*/);
+Xextern __declspec(__nothrow) void *malloc(size_t  );
+N   /*
+N    * allocates space for an object whose size is specified by 'size' and whose
+N    * value is indeterminate.
+N    * Returns: either a null pointer or a pointer to the allocated space.
+N    */
+Nextern _ARMABI void *realloc(void * /*ptr*/, size_t /*size*/);
+Xextern __declspec(__nothrow) void *realloc(void *  , size_t  );
+N   /*
+N    * changes the size of the object pointed to by ptr to the size specified by
+N    * size. The contents of the object shall be unchanged up to the lesser of
+N    * the new and old sizes. If the new size is larger, the value of the newly
+N    * allocated portion of the object is indeterminate. If ptr is a null
+N    * pointer, the realloc function behaves like a call to malloc for the
+N    * specified size. Otherwise, if ptr does not match a pointer earlier
+N    * returned by calloc, malloc or realloc, or if the space has been
+N    * deallocated by a call to free or realloc, the behaviour is undefined.
+N    * If the space cannot be allocated, the object pointed to by ptr is
+N    * unchanged. If size is zero and ptr is not a null pointer, the object it
+N    * points to is freed.
+N    * Returns: either a null pointer or a pointer to the possibly moved
+N    *          allocated space.
+N    */
+N#if !defined(__STRICT_ANSI__)
+X#if !0L
+Nextern _ARMABI int posix_memalign(void ** /*ret*/, size_t /*alignment*/, size_t /*size*/);
+Xextern __declspec(__nothrow) int posix_memalign(void **  , size_t  , size_t  );
+N   /*
+N    * allocates space for an object of size 'size', aligned to a
+N    * multiple of 'alignment' (which must be a power of two and at
+N    * least 4).
+N    *
+N    * On success, a pointer to the allocated object is stored in
+N    * *ret, and zero is returned. On failure, the return value is
+N    * either ENOMEM (allocation failed because no suitable piece of
+N    * memory was available) or EINVAL (the 'alignment' parameter was
+N    * invalid).
+N    */
+N#endif
+Ntypedef int (*__heapprt)(void *, char const *, ...);
+Nextern _ARMABI void __heapstats(int (* /*dprint*/)(void * /*param*/,
+Xextern __declspec(__nothrow) void __heapstats(int (*  )(void *  ,
+N                                           char const * /*format*/, ...),
+N                        void * /*param*/) __attribute__((__nonnull__(1)));
+N   /*
+N    * reports current heap statistics (eg. number of free blocks in
+N    * the free-list). Output is as implementation-defined free-form
+N    * text, provided via the dprint function. `param' gives an
+N    * extra data word to pass to dprint. You can call
+N    * __heapstats(fprintf,stdout) by casting fprintf to the above
+N    * function type; the typedef `__heapprt' is provided for this
+N    * purpose.
+N    *
+N    * `dprint' will not be called while the heap is being examined,
+N    * so it can allocate memory itself without trouble.
+N    */
+Nextern _ARMABI int __heapvalid(int (* /*dprint*/)(void * /*param*/,
+Xextern __declspec(__nothrow) int __heapvalid(int (*  )(void *  ,
+N                                           char const * /*format*/, ...),
+N                       void * /*param*/, int /*verbose*/) __attribute__((__nonnull__(1)));
+N   /*
+N    * performs a consistency check on the heap. Errors are reported
+N    * through dprint, like __heapstats. If `verbose' is nonzero,
+N    * full diagnostic information on the heap state is printed out.
+N    *
+N    * This routine probably won't work if the heap isn't a
+N    * contiguous chunk (for example, if __user_heap_extend has been
+N    * overridden).
+N    *
+N    * `dprint' may be called while the heap is being examined or
+N    * even in an invalid state, so it must perform no memory
+N    * allocation. In particular, if `dprint' calls (or is) a stdio
+N    * function, the stream it outputs to must already have either
+N    * been written to or been setvbuf'ed, or else the system will
+N    * allocate buffer space for it on the first call to dprint.
+N    */
+Nextern _ARMABI_NORETURN void abort(void);
+Xextern __declspec(__nothrow) __declspec(__noreturn) void abort(void);
+N   /*
+N    * causes abnormal program termination to occur, unless the signal SIGABRT
+N    * is being caught and the signal handler does not return. Whether open
+N    * output streams are flushed or open streams are closed or temporary
+N    * files removed is implementation-defined.
+N    * An implementation-defined form of the status 'unsuccessful termination'
+N    * is returned to the host environment by means of a call to
+N    * raise(SIGABRT).
+N    */
+N
+Nextern _ARMABI int atexit(void (* /*func*/)(void)) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) int atexit(void (*  )(void)) __attribute__((__nonnull__(1)));
+N   /*
+N    * registers the function pointed to by func, to be called without its
+N    * arguments at normal program termination. It is possible to register at
+N    * least 32 functions.
+N    * Returns: zero if the registration succeeds, nonzero if it fails.
+N    */
+N#if defined(__EDG__) && !defined(__GNUC__)
+X#if 1L && !0L
+N#define __LANGUAGE_LINKAGE_CHANGES_FUNCTION_TYPE
+N#endif
+N#if defined(__cplusplus) && defined(__LANGUAGE_LINKAGE_CHANGES_FUNCTION_TYPE) 
+X#if 0L && 1L 
+S    /* atexit that takes a ptr to a function with C++ linkage 
+S     * but not in GNU mode  
+S     */
+S    typedef void (* __C_exitfuncptr)();
+S    extern "C++"
+S    inline int atexit(void (* __func)()) {
+S      return atexit((__C_exitfuncptr)__func);
+S    }
+N#endif
+N
+N
+Nextern _ARMABI_NORETURN void exit(int /*status*/);
+Xextern __declspec(__nothrow) __declspec(__noreturn) void exit(int  );
+N   /*
+N    * causes normal program termination to occur. If more than one call to the
+N    * exit function is executed by a program, the behaviour is undefined.
+N    * First, all functions registered by the atexit function are called, in the
+N    * reverse order of their registration.
+N    * Next, all open output streams are flushed, all open streams are closed,
+N    * and all files created by the tmpfile function are removed.
+N    * Finally, control is returned to the host environment. If the value of
+N    * status is zero or EXIT_SUCCESS, an implementation-defined form of the
+N    * status 'successful termination' is returned. If the value of status is
+N    * EXIT_FAILURE, an implementation-defined form of the status
+N    * 'unsuccessful termination' is returned. Otherwise the status returned
+N    * is implementation-defined.
+N    */
+N
+Nextern _ARMABI_NORETURN void _Exit(int /*status*/);
+Xextern __declspec(__nothrow) __declspec(__noreturn) void _Exit(int  );
+N   /*
+N    * causes normal program termination to occur. No functions registered
+N    * by the atexit function are called.
+N    * In this implementation, all open output streams are flushed, all
+N    * open streams are closed, and all files created by the tmpfile function
+N    * are removed.
+N    * Control is returned to the host environment. The status returned to
+N    * the host environment is determined in the same way as for 'exit'.
+N    */     
+N
+Nextern _ARMABI char *getenv(const char * /*name*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) char *getenv(const char *  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * searches the environment list, provided by the host environment, for a
+N    * string that matches the string pointed to by name. The set of environment
+N    * names and the method for altering the environment list are
+N    * implementation-defined.
+N    * Returns: a pointer to a string associated with the matched list member.
+N    *          The array pointed to shall not be modified by the program, but
+N    *          may be overwritten by a subsequent call to the getenv function.
+N    *          If the specified name cannot be found, a null pointer is
+N    *          returned.
+N    */
+N
+Nextern _ARMABI int  system(const char * /*string*/);
+Xextern __declspec(__nothrow) int  system(const char *  );
+N   /*
+N    * passes the string pointed to by string to the host environment to be
+N    * executed by a command processor in an implementation-defined manner.
+N    * A null pointer may be used for string, to inquire whether a command
+N    * processor exists.
+N    *
+N    * Returns: If the argument is a null pointer, the system function returns
+N    *          non-zero only if a command processor is available. If the
+N    *          argument is not a null pointer, the system function returns an
+N    *          implementation-defined value.
+N    */
+N
+Nextern _ARMABI_THROW void *bsearch(const void * /*key*/, const void * /*base*/,
+Xextern  void *bsearch(const void *  , const void *  ,
+N              size_t /*nmemb*/, size_t /*size*/,
+N              int (* /*compar*/)(const void *, const void *)) __attribute__((__nonnull__(1,2,5)));
+N   /*
+N    * searches an array of nmemb objects, the initial member of which is
+N    * pointed to by base, for a member that matches the object pointed to by
+N    * key. The size of each member of the array is specified by size.
+N    * The contents of the array shall be in ascending sorted order according to
+N    * a comparison function pointed to by compar, which is called with two
+N    * arguments that point to the key object and to an array member, in that
+N    * order. The function shall return an integer less than, equal to, or
+N    * greater than zero if the key object is considered, respectively, to be
+N    * less than, to match, or to be greater than the array member.
+N    * Returns: a pointer to a matching member of the array, or a null pointer
+N    *          if no match is found. If two members compare as equal, which
+N    *          member is matched is unspecified.
+N    */
+N#if defined(__cplusplus) && defined(__LANGUAGE_LINKAGE_CHANGES_FUNCTION_TYPE)
+X#if 0L && 1L
+S    /* bsearch that takes a ptr to a function with C++ linkage 
+S     * but not in GNU mode
+S     */
+S    typedef int (* __C_compareprocptr)(const void *, const void *);
+S    extern "C++"
+S    void *bsearch(const void * __key, const void * __base,
+S              size_t __nmemb, size_t __size,
+S              int (* __compar)(const void *, const void *)) __attribute__((__nonnull__(1,2,5)));
+S    extern "C++"
+S    inline void *bsearch(const void * __key, const void * __base,
+S              size_t __nmemb, size_t __size,
+S              int (* __compar)(const void *, const void *)) {
+S      return bsearch(__key, __base, __nmemb, __size, (__C_compareprocptr)__compar);
+S    }
+N#endif
+N
+N
+Nextern _ARMABI_THROW void qsort(void * /*base*/, size_t /*nmemb*/, size_t /*size*/,
+Xextern  void qsort(void *  , size_t  , size_t  ,
+N           int (* /*compar*/)(const void *, const void *)) __attribute__((__nonnull__(1,4)));
+N   /*
+N    * sorts an array of nmemb objects, the initial member of which is pointed
+N    * to by base. The size of each object is specified by size.
+N    * The contents of the array shall be in ascending order according to a
+N    * comparison function pointed to by compar, which is called with two
+N    * arguments that point to the objects being compared. The function shall
+N    * return an integer less than, equal to, or greater than zero if the first
+N    * argument is considered to be respectively less than, equal to, or greater
+N    * than the second. If two members compare as equal, their order in the
+N    * sorted array is unspecified.
+N    */
+N
+N#if defined(__cplusplus) && defined(__LANGUAGE_LINKAGE_CHANGES_FUNCTION_TYPE)
+X#if 0L && 1L
+S    /* qsort that takes a ptr to a function with C++ linkage 
+S     * but not in GNU mode
+S     */    
+S    extern "C++"
+S    void qsort(void * __base, size_t __nmemb, size_t __size,
+S               int (* __compar)(const void *, const void *)) __attribute__((__nonnull__(1,4)));
+S    extern "C++"
+S    inline void qsort(void * __base, size_t __nmemb, size_t __size,
+S                      int (* __compar)(const void *, const void *)) {
+S      qsort(__base, __nmemb, __size, (__C_compareprocptr)__compar);
+S    }
+N#endif
+N
+Nextern _ARMABI_PURE int abs(int /*j*/);
+Xextern __declspec(__nothrow) __attribute__((const)) int abs(int  );
+N   /*
+N    * computes the absolute value of an integer j. If the result cannot be
+N    * represented, the behaviour is undefined.
+N    * Returns: the absolute value.
+N    */
+N
+Nextern _ARMABI_PURE div_t div(int /*numer*/, int /*denom*/);
+Xextern __declspec(__nothrow) __attribute__((const)) div_t div(int  , int  );
+N   /*
+N    * computes the quotient and remainder of the division of the numerator
+N    * numer by the denominator denom. If the division is inexact, the resulting
+N    * quotient is the integer of lesser magnitude that is the nearest to the
+N    * algebraic quotient. If the result cannot be represented, the behaviour is
+N    * undefined; otherwise, quot * denom + rem shall equal numer.
+N    * Returns: a structure of type div_t, comprising both the quotient and the
+N    *          remainder. the structure shall contain the following members,
+N    *          in either order.
+N    *          int quot; int rem;
+N    */
+Nextern _ARMABI_PURE long int labs(long int /*j*/);
+Xextern __declspec(__nothrow) __attribute__((const)) long int labs(long int  );
+N   /*
+N    * computes the absolute value of an long integer j. If the result cannot be
+N    * represented, the behaviour is undefined.
+N    * Returns: the absolute value.
+N    */
+N#ifdef __cplusplus
+S   extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+N#endif
+N
+Nextern _ARMABI_PURE ldiv_t ldiv(long int /*numer*/, long int /*denom*/);
+Xextern __declspec(__nothrow) __attribute__((const)) ldiv_t ldiv(long int  , long int  );
+N   /*
+N    * computes the quotient and remainder of the division of the numerator
+N    * numer by the denominator denom. If the division is inexact, the sign of
+N    * the resulting quotient is that of the algebraic quotient, and the
+N    * magnitude of the resulting quotient is the largest integer less than the
+N    * magnitude of the algebraic quotient. If the result cannot be represented,
+N    * the behaviour is undefined; otherwise, quot * denom + rem shall equal
+N    * numer.
+N    * Returns: a structure of type ldiv_t, comprising both the quotient and the
+N    *          remainder. the structure shall contain the following members,
+N    *          in either order.
+N    *          long int quot; long int rem;
+N    */
+N#ifdef __cplusplus
+S   extern "C++" inline _ARMABI_PURE ldiv_t div(long int __numer, long int __denom) {
+S       return ldiv(__numer, __denom);
+S   }
+N#endif
+N
+N#if !defined(__STRICT_ANSI__) || __USE_C99_STDLIB
+X#if !0L || __USE_C99_STDLIB
+Nextern _ARMABI_PURE __int64 llabs(__int64 /*j*/);
+Xextern __declspec(__nothrow) __attribute__((const)) __int64 llabs(__int64  );
+N   /*
+N    * computes the absolute value of a __int64 integer j. If the
+N    * result cannot be represented, the behaviour is undefined.
+N    * Returns: the absolute value.
+N    */
+N#ifdef __cplusplus
+S   extern "C++" inline _ARMABI_PURE __int64 abs(__int64 x) { return llabs(x); }
+N#endif
+N
+Nextern _ARMABI_PURE lldiv_t lldiv(__int64 /*numer*/, __int64 /*denom*/);
+Xextern __declspec(__nothrow) __attribute__((const)) lldiv_t lldiv(__int64  , __int64  );
+N   /*
+N    * computes the quotient and remainder of the division of the numerator
+N    * numer by the denominator denom. If the division is inexact, the sign of
+N    * the resulting quotient is that of the algebraic quotient, and the
+N    * magnitude of the resulting quotient is the largest integer less than the
+N    * magnitude of the algebraic quotient. If the result cannot be represented,
+N    * the behaviour is undefined; otherwise, quot * denom + rem shall equal
+N    * numer.
+N    * Returns: a structure of type lldiv_t, comprising both the quotient and the
+N    *          remainder. the structure shall contain the following members,
+N    *          in either order.
+N    *          long long quot; long long rem;
+N    */
+N#ifdef __cplusplus
+S   extern "C++" inline _ARMABI_PURE lldiv_t div(__int64 __numer, __int64 __denom) {
+S       return lldiv(__numer, __denom);
+S   }
+N#endif
+N#endif
+N
+N#if !(__ARM_NO_DEPRECATED_FUNCTIONS)
+N/*
+N * ARM real-time divide functions for guaranteed performance
+N */
+Ntypedef struct __sdiv32by16 { int quot, rem; } __sdiv32by16;
+Ntypedef struct __udiv32by16 { unsigned int quot, rem; } __udiv32by16;
+N   /* used int so that values return in separate regs, although 16-bit */
+Ntypedef struct __sdiv64by32 { int rem, quot; } __sdiv64by32;
+N
+N__value_in_regs extern _ARMABI_PURE __sdiv32by16 __rt_sdiv32by16(
+X__value_in_regs extern __declspec(__nothrow) __attribute__((const)) __sdiv32by16 __rt_sdiv32by16(
+N     int /*numer*/,
+N     short int /*denom*/);
+N   /*
+N    * Signed divide: (16-bit quot), (16-bit rem) = (32-bit) / (16-bit)
+N    */
+N__value_in_regs extern _ARMABI_PURE __udiv32by16 __rt_udiv32by16(
+X__value_in_regs extern __declspec(__nothrow) __attribute__((const)) __udiv32by16 __rt_udiv32by16(
+N     unsigned int /*numer*/,
+N     unsigned short /*denom*/);
+N   /*
+N    * Unsigned divide: (16-bit quot), (16-bit rem) = (32-bit) / (16-bit)
+N    */
+N__value_in_regs extern _ARMABI_PURE __sdiv64by32 __rt_sdiv64by32(
+X__value_in_regs extern __declspec(__nothrow) __attribute__((const)) __sdiv64by32 __rt_sdiv64by32(
+N     int /*numer_h*/, unsigned int /*numer_l*/,
+N     int /*denom*/);
+N   /*
+N    * Signed divide: (32-bit quot), (32-bit rem) = (64-bit) / (32-bit)
+N    */
+N#endif
+N
+N/*
+N * ARM floating-point mask/status function (for both hardfp and softfp)
+N */
+Nextern _ARMABI unsigned int __fp_status(unsigned int /*mask*/, unsigned int /*flags*/);
+Xextern __declspec(__nothrow) unsigned int __fp_status(unsigned int  , unsigned int  );
+N   /*
+N    * mask and flags are bit-fields which correspond directly to the
+N    * floating point status register in the FPE/FPA and fplib.  
+N    * __fp_status returns the current value of the status register,
+N    * and also sets the writable bits of the word
+N    * (the exception control and flag bytes) to:
+N    *
+N    *     new = (old & ~mask) ^ flags;
+N    */
+N#define __fpsr_IXE  0x100000
+N#define __fpsr_UFE  0x80000
+N#define __fpsr_OFE  0x40000
+N#define __fpsr_DZE  0x20000
+N#define __fpsr_IOE  0x10000
+N
+N#define __fpsr_IXC  0x10
+N#define __fpsr_UFC  0x8
+N#define __fpsr_OFC  0x4
+N#define __fpsr_DZC  0x2
+N#define __fpsr_IOC  0x1
+N
+N/*
+N * Multibyte Character Functions.
+N * The behaviour of the multibyte character functions is affected by the
+N * LC_CTYPE category of the current locale. For a state-dependent encoding,
+N * each function is placed into its initial state by a call for which its
+N * character pointer argument, s, is a null pointer. Subsequent calls with s
+N * as other than a null pointer cause the internal state of the function to be
+N * altered as necessary. A call with s as a null pointer causes these functions
+N * to return a nonzero value if encodings have state dependency, and a zero
+N * otherwise. After the LC_CTYPE category is changed, the shift state of these
+N * functions is indeterminate.
+N */
+Nextern _ARMABI int mblen(const char * /*s*/, size_t /*n*/);
+Xextern __declspec(__nothrow) int mblen(const char *  , size_t  );
+N   /*
+N    * If s is not a null pointer, the mblen function determines the number of
+N    * bytes compromising the multibyte character pointed to by s. Except that
+N    * the shift state of the mbtowc function is not affected, it is equivalent
+N    * to   mbtowc((wchar_t *)0, s, n);
+N    * Returns: If s is a null pointer, the mblen function returns a nonzero or
+N    *          zero value, if multibyte character encodings, respectively, do
+N    *          or do not have state-dependent encodings. If s is not a null
+N    *          pointer, the mblen function either returns a 0 (if s points to a
+N    *          null character), or returns the number of bytes that compromise
+N    *          the multibyte character (if the next n of fewer bytes form a
+N    *          valid multibyte character), or returns -1 (they do not form a
+N    *          valid multibyte character).
+N    */
+Nextern _ARMABI int mbtowc(wchar_t * __restrict /*pwc*/,
+Xextern __declspec(__nothrow) int mbtowc(wchar_t * __restrict  ,
+N                   const char * __restrict /*s*/, size_t /*n*/);
+N   /*
+N    * If s is not a null pointer, the mbtowc function determines the number of
+N    * bytes that compromise the multibyte character pointed to by s. It then
+N    * determines the code for value of type wchar_t that corresponds to that
+N    * multibyte character. (The value of the code corresponding to the null
+N    * character is zero). If the multibyte character is valid and pwc is not a
+N    * null pointer, the mbtowc function stores the code in the object pointed
+N    * to by pwc. At most n bytes of the array pointed to by s will be examined.
+N    * Returns: If s is a null pointer, the mbtowc function returns a nonzero or
+N    *          zero value, if multibyte character encodings, respectively, do
+N    *          or do not have state-dependent encodings. If s is not a null
+N    *          pointer, the mbtowc function either returns a 0 (if s points to
+N    *          a null character), or returns the number of bytes that
+N    *          compromise the converted multibyte character (if the next n of
+N    *          fewer bytes form a valid multibyte character), or returns -1
+N    *          (they do not form a valid multibyte character).
+N    */
+Nextern _ARMABI int wctomb(char * /*s*/, wchar_t /*wchar*/);
+Xextern __declspec(__nothrow) int wctomb(char *  , wchar_t  );
+N   /*
+N    * determines the number of bytes need to represent the multibyte character
+N    * corresponding to the code whose value is wchar (including any change in
+N    * shift state). It stores the multibyte character representation in the
+N    * array object pointed to by s (if s is not a null pointer). At most
+N    * MB_CUR_MAX characters are stored. If the value of wchar is zero, the
+N    * wctomb function is left in the initial shift state).
+N    * Returns: If s is a null pointer, the wctomb function returns a nonzero or
+N    *          zero value, if multibyte character encodings, respectively, do
+N    *          or do not have state-dependent encodings. If s is not a null
+N    *          pointer, the wctomb function returns a -1 if the value of wchar
+N    *          does not correspond to a valid multibyte character, or returns
+N    *          the number of bytes that compromise the multibyte character
+N    *          corresponding to the value of wchar.
+N    */
+N
+N/*
+N * Multibyte String Functions.
+N * The behaviour of the multibyte string functions is affected by the LC_CTYPE
+N * category of the current locale.
+N */
+Nextern _ARMABI size_t mbstowcs(wchar_t * __restrict /*pwcs*/,
+Xextern __declspec(__nothrow) size_t mbstowcs(wchar_t * __restrict  ,
+N                      const char * __restrict /*s*/, size_t /*n*/) __attribute__((__nonnull__(2)));
+N   /*
+N    * converts a sequence of multibyte character that begins in the initial
+N    * shift state from the array pointed to by s into a sequence of
+N    * corresponding codes and stores not more than n codes into the array
+N    * pointed to by pwcs. No multibyte character that follow a null character
+N    * (which is converted into a code with value zero) will be examined or
+N    * converted. Each multibyte character is converted as if by a call to
+N    * mbtowc function, except that the shift state of the mbtowc function is
+N    * not affected. No more than n elements will be modified in the array
+N    * pointed to by pwcs. If copying takes place between objects that overlap,
+N    * the behaviour is undefined.
+N    * Returns: If an invalid multibyte character is encountered, the mbstowcs
+N    *          function returns (size_t)-1. Otherwise, the mbstowcs function
+N    *          returns the number of array elements modified, not including
+N    *          a terminating zero code, if any.
+N    */
+Nextern _ARMABI size_t wcstombs(char * __restrict /*s*/,
+Xextern __declspec(__nothrow) size_t wcstombs(char * __restrict  ,
+N                      const wchar_t * __restrict /*pwcs*/, size_t /*n*/) __attribute__((__nonnull__(2)));
+N   /*
+N    * converts a sequence of codes that correspond to multibyte characters
+N    * from the array pointed to by pwcs into a sequence of multibyte
+N    * characters that begins in the initial shift state and stores these
+N    * multibyte characters into the array pointed to by s, stopping if a
+N    * multibyte character would exceed the limit of n total bytes or if a
+N    * null character is stored. Each code is converted as if by a call to the
+N    * wctomb function, except that the shift state of the wctomb function is
+N    * not affected. No more than n elements will be modified in the array
+N    * pointed to by s. If copying takes place between objects that overlap,
+N    * the behaviour is undefined.
+N    * Returns: If a code is encountered that does not correspond to a valid
+N    *          multibyte character, the wcstombs function returns (size_t)-1.
+N    *          Otherwise, the wcstombs function returns the number of bytes
+N    *          modified, not including a terminating null character, if any.
+N    */
+N
+Nextern _ARMABI void __use_realtime_heap(void);
+Xextern __declspec(__nothrow) void __use_realtime_heap(void);
+Nextern _ARMABI void __use_realtime_division(void);
+Xextern __declspec(__nothrow) void __use_realtime_division(void);
+Nextern _ARMABI void __use_two_region_memory(void);
+Xextern __declspec(__nothrow) void __use_two_region_memory(void);
+Nextern _ARMABI void __use_no_heap(void);
+Xextern __declspec(__nothrow) void __use_no_heap(void);
+Nextern _ARMABI void __use_no_heap_region(void);
+Xextern __declspec(__nothrow) void __use_no_heap_region(void);
+N
+Nextern _ARMABI char const *__C_library_version_string(void);
+Xextern __declspec(__nothrow) char const *__C_library_version_string(void);
+Nextern _ARMABI int __C_library_version_number(void);
+Xextern __declspec(__nothrow) int __C_library_version_number(void);
+N
+N    #ifdef __cplusplus
+S         }  /* extern "C" */
+S      }  /* namespace std */
+N    #endif /* __cplusplus */
+N  #endif /* __STDLIB_DECLS */
+N
+N  #if _AEABI_PORTABILITY_LEVEL != 0 && !defined _AEABI_PORTABLE
+X  #if _AEABI_PORTABILITY_LEVEL != 0 && !0L
+S    #define _AEABI_PORTABLE
+N  #endif
+N
+N  #ifdef __cplusplus
+S    #ifndef __STDLIB_NO_EXPORTS
+S      #if !defined(__STRICT_ANSI__) || __USE_C99_STDLIB
+S        using ::std::atoll;
+S        using ::std::lldiv_t;
+S      #endif /* !defined(__STRICT_ANSI__) || __USE_C99_STDLIB */
+S      using ::std::div_t;
+S      using ::std::ldiv_t;
+S      using ::std::atof;
+S      using ::std::atoi;
+S      using ::std::atol;
+S      using ::std::strtod;
+S#if !defined(__STRICT_ANSI__) || __USE_C99_STDLIB
+S      using ::std::strtof;
+S      using ::std::strtold;
+S#endif
+S      using ::std::strtol;
+S      using ::std::strtoul;
+S      using ::std::strtoll;
+S      using ::std::strtoull;
+S      using ::std::rand;
+S      using ::std::srand;
+S      using ::std::_rand_state;
+S      using ::std::_rand_r;
+S      using ::std::_srand_r;
+S      using ::std::_ANSI_rand_state;
+S      using ::std::_ANSI_rand_r;
+S      using ::std::_ANSI_srand_r;
+S      using ::std::calloc;
+S      using ::std::free;
+S      using ::std::malloc;
+S      using ::std::realloc;
+S#if !defined(__STRICT_ANSI__)
+S      using ::std::posix_memalign;
+S#endif
+S      using ::std::__heapprt;
+S      using ::std::__heapstats;
+S      using ::std::__heapvalid;
+S      using ::std::abort;
+S      using ::std::atexit;
+S      using ::std::exit;
+S      using ::std::_Exit;
+S      using ::std::getenv;
+S      using ::std::system;
+S      using ::std::bsearch;
+S      using ::std::qsort;
+S      using ::std::abs;
+S      using ::std::div;
+S      using ::std::labs;
+S      using ::std::ldiv;
+S      #if !defined(__STRICT_ANSI__) || __USE_C99_STDLIB
+S        using ::std::llabs;
+S        using ::std::lldiv;
+S      #endif /* !defined(__STRICT_ANSI__) || __USE_C99_STDLIB */
+S#if !(__ARM_NO_REALTIME_DIVIDE)
+S      using ::std::__sdiv32by16;
+S      using ::std::__udiv32by16;
+S      using ::std::__sdiv64by32;
+S      using ::std::__rt_sdiv32by16;
+S      using ::std::__rt_udiv32by16;
+S      using ::std::__rt_sdiv64by32;
+S#endif
+S      using ::std::__fp_status;
+S      using ::std::mblen;
+S      using ::std::mbtowc;
+S      using ::std::wctomb;
+S      using ::std::mbstowcs;
+S      using ::std::wcstombs;
+S      using ::std::__use_realtime_heap;
+S      using ::std::__use_realtime_division;
+S      using ::std::__use_two_region_memory;
+S      using ::std::__use_no_heap;
+S      using ::std::__use_no_heap_region;
+S      using ::std::__C_library_version_string;
+S      using ::std::__C_library_version_number;
+S      using ::std::size_t;
+S      using ::std::__aeabi_MB_CUR_MAX;
+S    #endif /* __STDLIB_NO_EXPORTS */
+N  #endif /* __cplusplus */
+N
+N#endif
+N/* end of stdlib.h */
+N
+L 21 "chirp.h" 2
+N#include <stdarg.h>
+L 1 "C:\Keil_v5\ARM\ARMCC\bin\..\include\stdarg.h" 1
+N/* stdarg.h: ANSI 'C' (X3J11 Oct 88) library header, section 4.8 */
+N/* Copyright (C) Codemist Ltd., 1988                            */
+N/* Copyright (C) ARM Ltd., 1991-1999. All rights reserved */
+N
+N/*
+N * RCS $Revision: 177844 $
+N * Checkin $Date: 2012-11-21 11:51:12 +0000 (Wed, 21 Nov 2012) $
+N * Revising $Author: agrant $
+N */
+N
+N#ifndef __stdarg_h
+N#define __stdarg_h
+N#define __ARMCLIB_VERSION 5040049
+N
+N  #ifndef __STDARG_DECLS
+N  #define __STDARG_DECLS
+N
+N    #undef __CLIBNS
+N
+N    #ifdef __cplusplus
+S      namespace std {
+S          #define __CLIBNS ::std::
+S          extern "C" {
+N    #else
+N      #define __CLIBNS
+N    #endif  /* __cplusplus */
+N
+N/*
+N * stdarg.h declares a type and defines macros for advancing through a
+N * list of arguments whose number and types are not known to the called
+N * function when it is translated. A function may be called with a variable
+N * number of arguments of differing types. Its parameter list contains one or
+N * more parameters. The rightmost parameter plays a special role in the access
+N * mechanism, and will be called parmN in this description.
+N */
+N
+N/* N.B. <stdio.h> is required to declare vfprintf() without defining      */
+N/* va_list.  Clearly the type __va_list there must keep in step.          */
+N  typedef struct __va_list { void *__ap; } va_list;
+N
+N   /*
+N    * an array type suitable for holding information needed by the macro va_arg
+N    * and the function va_end. The called function shall declare a variable
+N    * (referred to as ap) having type va_list. The variable ap may be passed as
+N    * an argument to another function.
+N    * Note: va_list is an array type so that when an object of that type
+N    * is passed as an argument it gets passed by reference.
+N    */
+N  #define va_start(ap, parmN) __va_start(ap, parmN)
+N
+N   /*
+N    * The va_start macro shall be executed before any access to the unnamed
+N    * arguments. The parameter ap points to an object that has type va_list.
+N    * The va_start macro initialises ap for subsequent use by va_arg and
+N    * va_end. The parameter parmN is the identifier of the rightmost parameter
+N    * in the variable parameter list in the function definition (the one just
+N    * before the '...'). If the parameter parmN is declared with the register
+N    * storage class an error is given.
+N    * If parmN is a narrow type (char, short, float) an error is given in
+N    * strict ANSI mode, or a warning otherwise.
+N    * Returns: no value.
+N    */
+N  #define va_arg(ap, type) __va_arg(ap, type)
+N
+N   /*
+N    * The va_arg macro expands to an expression that has the type and value of
+N    * the next argument in the call. The parameter ap shall be the same as the
+N    * va_list ap initialised by va_start. Each invocation of va_arg modifies
+N    * ap so that successive arguments are returned in turn. The parameter
+N    * 'type' is a type name such that the type of a pointer to an object that
+N    * has the specified type can be obtained simply by postfixing a * to
+N    * 'type'. If type is a narrow type, an error is given in strict ANSI
+N    * mode, or a warning otherwise. If the type is an array or function type,
+N    * an error is given.
+N    * In non-strict ANSI mode, 'type' is allowed to be any expression.
+N    * Returns: The first invocation of the va_arg macro after that of the
+N    *          va_start macro returns the value of the argument after that
+N    *          specified by parmN. Successive invocations return the values of
+N    *          the remaining arguments in succession.
+N    *          The result is cast to 'type', even if 'type' is narrow.
+N    */
+N
+N#define __va_copy(dest, src) ((void)((dest) = (src)))
+N
+N#if !defined(__STRICT_ANSI__) || (defined(__STDC_VERSION__) && 199901L <= __STDC_VERSION__)
+X#if !0L || (1L && 199901L <= 199409L)
+N   /* va_copy is in C99 and non-strict C90 and non-strict C++
+N    * __va_copy is always present.
+N    */
+N  #define va_copy(dest, src) ((void)((dest) = (src)))
+N
+N   /* The va_copy macro makes the va_list dest be a copy of
+N    * the va_list src, as if the va_start macro had been applied
+N    * to it followed by the same sequence of uses of the va_arg
+N    * macro as had previously been used to reach the present state
+N    * of src.
+N    */
+N#endif
+N
+N#define va_end(ap) __va_end(ap)
+N   /*
+N    * The va_end macro facilitates a normal return from the function whose
+N    * variable argument list was referenced by the expansion of va_start that
+N    * initialised the va_list ap. If the va_end macro is not invoked before
+N    * the return, the behaviour is undefined.
+N    * Returns: no value.
+N    */
+N
+N    #ifdef __cplusplus
+S         }  /* extern "C" */
+S      }  /* namespace std */
+N    #endif /* __cplusplus */
+N
+N    #ifdef __GNUC__
+S     /* be cooperative with glibc */
+S     typedef __CLIBNS va_list __gnuc_va_list;
+S     #define __GNUC_VA_LIST
+S     #undef __need___va_list
+N    #endif
+N
+N  #endif /* __STDARG_DECLS */
+N
+N  #ifdef __cplusplus
+S    #ifndef __STDARG_NO_EXPORTS
+S      using ::std::va_list;
+S    #endif
+N  #endif /* __cplusplus */
+N
+N#endif
+N
+N/* end of stdarg.h */
+N
+L 22 "chirp.h" 2
+N
+N#undef FALSE
+N#define FALSE 0
+N#undef TRUE
+N#define TRUE 1
+N
+N#define CRP_ERROR_CORRECTED
+N#define CRP_SHARED_MEM
+N
+N#define CRP_BLK_SIZE                    0x200
+N#ifdef CRP_ERROR_CORRECTED
+N#define CRP_HEADER_LEN                  12
+N#else
+S#define CRP_HEADER_LEN                  8
+N#endif
+N#define CRP_MAX_NAK           		3
+N#define CRP_RETRIES                     3
+N#define CRP_HEADER_TIMEOUT    		500
+N#define CRP_DATA_TIMEOUT      		100
+N#define CRP_IDLE_TIMEOUT      		100
+N#define CRP_SEND_TIMEOUT      		500
+N
+N#define CRP_RES_OK                      0
+N#define CRP_RES_ERROR                   -1
+N#define CRP_RES_ERROR_RECV_TIMEOUT      -100
+N#define CRP_RES_ERROR_SEND_TIMEOUT      -101
+N#define CRP_RES_ERROR_CRC               -2
+N#define CRP_RES_ERROR_PARSE             -3
+N#define CRP_RES_ERROR_MAX_NAK           -4
+N#define CRP_RES_ERROR_MEMORY            -5
+N#define CRP_RES_ERROR_NOT_CONNECTED     -6
+N
+N#define CRP_MAX_ARGS          		10
+N#define CRP_BUFSIZE           		0x80
+N#define CRP_BUFPAD            		8
+N#define CRP_PROCTABLE_LEN     		0x20
+N
+N#define CRP_START_CODE        		0xaaaa5555
+N
+N#define CRP_CALL              		0x80
+N#define CRP_RESPONSE          		0x40
+N#define CRP_INTRINSIC          		0x20
+N#define CRP_DATA                    0x10
+N#define CRP_CALL_ENUMERATE    		(CRP_CALL | CRP_INTRINSIC | 0x00)
+N#define CRP_CALL_INIT         		(CRP_CALL | CRP_INTRINSIC | 0x01)
+N
+N#define CRP_ACK                         0x59
+N#define CRP_NACK                        0x95
+N#define CRP_MAX_HEADER_LEN              64
+N
+N#define CRP_ARRAY                       0x80 // bit
+N#define CRP_FLT                         0x10 // bit
+N#define CRP_HINT                        0x40 // bit
+N#define CRP_NULLTERM_ARRAY              (0x20 | CRP_ARRAY) // bits
+N#define CRP_INT8                        0x01
+N#define CRP_UINT8                       0x01
+N#define CRP_INT16                       0x02
+N#define CRP_UINT16                      0x02
+N#define CRP_INT32                       0x04
+N#define CRP_UINT32                      0x04
+N#define CRP_FLT32                       (CRP_FLT | 0x04)
+N#define CRP_FLT64                       (CRP_FLT | 0x08)
+N#define CRP_STRING                      (CRP_NULLTERM_ARRAY | CRP_INT8)
+N#define CRP_TYPE_HINT                   0x64 // type hint identifier
+N#define CRP_INTS8                       (CRP_INT8 | CRP_ARRAY)
+N#define CRP_INTS16                      (CRP_INT16 | CRP_ARRAY)
+N#define CRP_INTS32                      (CRP_INT32 | CRP_ARRAY)
+N#define CRP_UINTS8                      CRP_INTS8
+N#define CRP_UINTS16                     CRP_INTS16
+N#define CRP_UINTS32                     CRP_INTS32
+N#define CRP_FLTS32                      (CRP_FLT32 | CRP_ARRAY)
+N#define CRP_FLTS64                      (CRP_FLT64 | CRP_ARRAY)
+N#define CRP_HINTS8                      (CRP_INT8 | CRP_ARRAY | CRP_HINT)
+N#define CRP_HINTS16                     (CRP_INT16 | CRP_ARRAY | CRP_HINT)
+N#define CRP_HINTS32                     (CRP_INT32 | CRP_ARRAY | CRP_HINT)
+N#define CRP_HFLTS32                     (CRP_FLT32 | CRP_ARRAY | CRP_HINT)
+N#define CRP_HFLTS64                     (CRP_FLT64 | CRP_ARRAY | CRP_HINT)
+N#define CRP_HSTRING                     (CRP_STRING | CRP_HINT)
+N// CRP_HTYPE is for arg lists which are uint8_t arrays
+N#define CRP_HTYPE(v)                    CRP_TYPE_HINT, (uint8_t)(v>>0&0xff), (uint8_t)(v>>8&0xff), (uint8_t)(v>>16&0xff), (uint8_t)(v>>24&0xff)
+N
+N// regular call args
+N#define INT8(v)                         CRP_INT8, v
+N#define UINT8(v)                        CRP_INT8, v
+N#define INT16(v)                        CRP_INT16, v
+N#define UINT16(v)                       CRP_INT16, v
+N#define INT32(v)                        CRP_INT32, v
+N#define UINT32(v)                       CRP_INT32, v
+N#define FLT32(v)                        CRP_FLT32, v
+N#define FLT64(v)                        CRP_FLT64, v
+N#define STRING(s)                       CRP_STRING, s
+N#define INTS8(len, a)                   CRP_INTS8, len, a
+N#define UINTS8(len, a)                  CRP_INTS8, len, a
+N#define INTS16(len, a)                  CRP_INTS16, len, a
+N#define UINTS16(len, a)                 CRP_INTS16, len, a
+N#define INTS32(len, a)                  CRP_INTS32, len, a
+N#define UINTS32(len, a)                 CRP_INTS32, len, a
+N#define FLTS32(len, a)                  CRP_FLTS32, len, a
+N#define FLTS64(len, a)                  CRP_FLTS64, len, a
+N
+N// hint call args
+N#define HINT8(v)                        CRP_HINT8, v
+N#define UHINT8(v)                       CRP_HINT8, v
+N#define HINT16(v)                       CRP_HINT16, v
+N#define UHINT16(v)                      CRP_HINT16, v
+N#define HINT32(v)                       CRP_HINT32, v
+N#define UHINT32(v)                      CRP_HINT32, v
+N#define HFLT32(v)                       CRP_HFLT32, v
+N#define HFLT64(v)                       CRP_HFLT64, v
+N#define HSTRING(s)                      CRP_HSTRING, s
+N#define HINTS8(len, a)                  CRP_HINTS8, len, a
+N#define UHINTS8(len, a)                 CRP_HINTS8, len, a
+N#define HINTS16(len, a)                 CRP_HINTS16, len, a
+N#define UHINTS16(len, a)                CRP_HINTS16, len, a
+N#define HINTS32(len, a)                 CRP_HINTS32, len, a
+N#define UHINTS32(len, a)                CRP_HINTS32, len, a
+N#define HFLTS32(len, a)                 CRP_HFLTS32, len, a
+N#define HFLTS64(len, a)                 CRP_HFLTS64, len, a
+N#define HTYPE(v)                        CRP_TYPE_HINT, v
+N
+N#define INT8_IN(v)                      const int8_t * v
+N#define UINT8_IN(v)                     const uint8_t * v
+N#define INT16_IN(v)                     const int16_t * v
+N#define UINT16_IN(v)                    const uint16_t * v
+N#define INT32_IN(v)                     const int32_t * v
+N#define UINT32_IN(v)                    const uint32_t * v
+N#define FLT32_IN(v)                     const float * v
+N#define FLT64_IN(v)                     const double * v
+N#define STRING_IN(s)                    const const char * s
+N#define INTS8_IN(len, a)                const uint32_t * len, const int8_t * a
+N#define UINTS8_IN(len, a)               const uint32_t * len, const uint8_t * a
+N#define INTS16_IN(len, a)               const uint32_t * len, const int16_t * a
+N#define UINTS16_IN(len, a)              const uint32_t * len, const uint16_t * a
+N#define INTS32_IN(len, a)               const uint32_t * len, const int32_t * a
+N#define UINTS32_IN(len, a)              const uint32_t * len, const uint32_t * a
+N#define FLTS32_IN(len, a)               const uint32_t * len, const float * a
+N#define FLTS64_IN(len, a)               const uint32_t * len, const double * a
+N
+N#define END                             0
+N#define END_SEND_ARGS                   END
+N#define END_RECV_ARGS                   END
+N
+N// service types
+N#define SYNC                            0
+N#define ASYNC                           1
+N
+N#define CRP_RETURN(...)                 chirpAssemble(0, __VA_ARGS__, END)
+N#define chirpCallSync(...)              chirpCall(SYNC, __VA_ARGS__, END)
+N#define chirpCallAsync(...)             chirpCall(ASYNC, __VA_ARGS__, END)
+N
+N
+Ntypedef int bool;
+Ntypedef int16_t ChirpProc;
+N
+Ntypedef uint32_t (*ProcPtr)(void);
+N
+Ntypedef struct
+N{
+N    const char *procName;
+N    ProcPtr procPtr;
+N    ChirpProc chirpProc;
+N}
+NProcTableEntry;
+N
+N
+Nint chirpOpen(void);
+Nint chirpClose(void);
+NChirpProc chirpGetProc(const char *procName, ProcPtr callback);
+Nint chirpSetProc(const char *procName, ProcPtr proc);
+Nint chirpCall(uint8_t service, ChirpProc proc, ...);
+Nuint8_t chirpGetType(void *arg);
+Nint chirpService(void);
+Nint chirpAssemble(int dummy, ...);
+Nint chirpRemoteInit(void);
+N
+N// link flag index
+N#define LINK_FLAG_INDEX_SHARED_MEMORY_LOCATION          0x01
+N#define LINK_FLAG_INDEX_SHARED_MEMORY_SIZE              0x02
+N
+Nextern int32_t chirpInit(void);
+Nextern int linkSend(const uint8_t *data, uint32_t len, uint16_t timeoutMs);
+Nextern int linkReceive(uint8_t *data, uint32_t len, uint16_t timeoutMs);
+Nextern uint32_t linkBlockSize(void);
+Nextern uint32_t linkGetFlags(uint8_t index);
+N#endif // CHIRP_H
+L 18 "chirp.c" 2
+N
+N// todo yield, sleep() while waiting for sync response
+N// todo
+N
+N#define ALIGN(v, n)  v = v&((n)-1) ? (v&~((n)-1))+(n) : v
+N
+Nstatic ProcTableEntry *g_procTable;
+Nstatic uint16_t g_procTableSize;
+Nstatic uint16_t g_blkSize;
+Nstatic bool g_connected;
+Nstatic uint8_t *g_buf;
+N#ifndef CRP_ERROR_CORRECTED
+Sstatic uint32_t g_offset;
+N#endif
+Nstatic uint32_t g_len;
+Nstatic uint32_t g_bufSize;
+Nstatic bool g_remoteInit;
+Nstatic bool g_hinformer;
+N
+N
+N
+N#ifdef CRP_ERROR_CORRECTED
+Nstatic int sendFull(uint8_t type, ChirpProc proc);
+Nstatic int recvFull(uint8_t *type, ChirpProc *proc, bool wait);
+N#else
+Sstatic int sendHeader(uint8_t type, ChirpProc proc);
+Sstatic int sendData(void);
+Sstatic int recvHeader(uint8_t *type, ChirpProc *proc, bool wait);
+Sstatic int recvData(void);
+Sstatic int sendAck(bool ack); // false=nack
+Sstatic int recvAck(bool *ack, uint16_t timeout); // false=nack
+Sstatic uint16_t calcCrc(uint8_t *buf, uint32_t len);
+N#endif
+Nstatic int sendChirp(uint8_t type, ChirpProc proc);
+Nstatic int sendChirpRetry(uint8_t type, ChirpProc proc);
+Nstatic int recvChirp(uint8_t *type, ChirpProc *proc, void *args[], bool wait); // null pointer terminates
+Nstatic int handleChirp(uint8_t type, ChirpProc proc, void *args[]); // null pointer terminates
+Nstatic int32_t handleEnumerate(char *procName, ChirpProc *callback);
+Nstatic int32_t handleInit(uint16_t *blkSize, uint8_t *hinformer);
+Nstatic int assembleHelper(va_list *args);
+Nstatic int loadArgs(va_list *args, void *recvArgs[]);
+Nstatic ChirpProc updateTable(const char *procName, ProcPtr procPtr);
+Nstatic ChirpProc lookupTable(const char *procName);
+Nstatic int reallocate(uint32_t min);
+Nstatic int reallocTable(void);
+N
+N
+N// weak definitions (need to change this keyword for different compiler)
+N// for gcc-- void __attribute__((weak)) foo()
+N__weak uint32_t linkBlockSize()
+N{
+N    return CRP_BLK_SIZE;
+X    return 0x200;
+N}
+N
+N__weak uint32_t linkGetFlags(uint8_t index)
+N{
+N    return 0;
+N}
+N
+N__weak int32_t chirpInit(void)
+N{
+N    return 0;
+N}
+N
+N// assume that destination is aligned on the correct boundary and copy the source byte by byte
+Nvoid copyAlign(char *dest, const char *src, int size)
+N{
+N    int i;
+N    for (i=0; i<size; i++)
+N        dest[i] = src[i];
+N}
+N
+Nint chirpOpen()
+N{
+N    g_connected = FALSE;
+X    g_connected = 0;
+N    g_remoteInit = FALSE;
+X    g_remoteInit = 0;
+N    g_hinformer = FALSE;
+X    g_hinformer = 0;
+N
+N#ifndef CRP_SHARED_MEM
+S    g_bufSize = CRP_BUFSIZE;
+S    g_buf = malloc(g_bufSize);
+N#else
+N    g_bufSize = linkGetFlags(LINK_FLAG_INDEX_SHARED_MEMORY_SIZE);
+X    g_bufSize = linkGetFlags(0x02);
+N    g_buf = (uint8_t *)linkGetFlags(LINK_FLAG_INDEX_SHARED_MEMORY_LOCATION);
+X    g_buf = (uint8_t *)linkGetFlags(0x01);
+N#endif
+N
+N    g_blkSize = linkBlockSize();
+N    g_procTableSize = CRP_PROCTABLE_LEN;
+X    g_procTableSize = 0x20;
+N    g_procTable = malloc(sizeof(ProcTableEntry)*g_procTableSize);
+N    memset(g_procTable, 0, sizeof(ProcTableEntry)*g_procTableSize);
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+Nint chirpClose()
+N{
+N#ifndef CRP_SHARED_MEM
+S    free(g_buf);
+N#endif
+N    free(g_procTable);
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+N
+Nint chirpAssemble(int dummy, ...)
+N{
+N    int res;
+N    va_list args;
+N
+N    va_start(args, dummy);
+X    __va_start(args, dummy);
+N    res = assembleHelper(&args);
+N    va_end(args);
+X    __va_end(args);
+N
+N    return res;
+N}
+N
+Nint assembleHelper(va_list *args)
+N{
+N    int res;
+N    uint8_t type, origType;
+N    uint32_t i, si;
+N    int8_t *ptr;
+N
+N    for (i=CRP_HEADER_LEN+g_len; TRUE;)
+X    for (i=12+g_len; 1;)
+N    {
+N#if defined(__WIN32__) || defined(__arm)
+X#if 0L || 1L
+N        type = va_arg(*args, int);
+X        type = __va_arg(*args, int);
+N#else
+S        type = va_arg(*args, uint8_t);
+N#endif
+N
+N        if (type==END)
+X        if (type==0)
+N            break;
+N
+N        si = i; // save index so we can skip over data if needed
+N        g_buf[i++] = type;
+N
+N        // treat hints like other types for now
+N        // but if gotoe isn't interested  in hints (m_hinformer=false),
+N        // we'll restore index to si and effectively skip data.
+N        origType = type;
+N        type &= ~CRP_HINT;
+X        type &= ~0x40;
+N
+N        if (type==CRP_INT8)
+X        if (type==0x01)
+N        {
+N#if defined(__WIN32__) || defined(__arm)
+X#if 0L || 1L
+N            int8_t val = va_arg(*args, int);
+X            int8_t val = __va_arg(*args, int);
+N#else
+S            int8_t val = va_arg(*args, int8_t);
+N#endif
+N            *(int8_t *)(g_buf+i) = val;
+N            i += 1;
+N        }
+N        else if (type==CRP_INT16)
+X        else if (type==0x02)
+N        {
+N#if defined(__WIN32__) || defined(__arm)
+X#if 0L || 1L
+N            int16_t val = va_arg(*args, int);
+X            int16_t val = __va_arg(*args, int);
+N#else
+S            int16_t val = va_arg(*args, int16_t);
+N#endif
+N            ALIGN(i, 2);
+X            i = i&((2)-1) ? (i&~((2)-1))+(2) : i;
+N            // rewrite type so chirpGetType will work (even though we might add padding between type and data)
+N            g_buf[i-1] = origType;
+N            *(int16_t *)(g_buf+i) = val;
+N            i += 2;
+N        }
+N        else if (type==CRP_INT32 || origType==CRP_TYPE_HINT) // CRP_TYPE_HINT is a special case...
+X        else if (type==0x04 || origType==0x64) 
+N        {
+N            int32_t val = va_arg(*args, int32_t);
+X            int32_t val = __va_arg(*args, int32_t);
+N            ALIGN(i, 4);
+X            i = i&((4)-1) ? (i&~((4)-1))+(4) : i;
+N            g_buf[i-1] = origType;
+N            *(int32_t *)(g_buf+i) = val;
+N            i += 4;
+N        }
+N        else if (type==CRP_FLT32)
+X        else if (type==(0x10 | 0x04))
+N        {
+N#if defined(__WIN32__) || defined(__arm)
+X#if 0L || 1L
+N            float val = va_arg(*args, double);
+X            float val = __va_arg(*args, double);
+N#else
+S            float val = va_arg(*args, float);
+N#endif
+N            ALIGN(i, 4);
+X            i = i&((4)-1) ? (i&~((4)-1))+(4) : i;
+N            g_buf[i-1] = origType;
+N            *(float *)(g_buf+i) = val;
+N            i += 4;
+N        }
+N        else if (type==CRP_STRING)
+X        else if (type==((0x20 | 0x80) | 0x01))
+N        {
+N            int8_t *s = va_arg(*args, int8_t *);
+X            int8_t *s = __va_arg(*args, int8_t *);
+N            uint32_t len = strlen((char *)s)+1; // include null
+N
+N            if (len+i > g_bufSize-CRP_BUFPAD && (res=reallocate(len+i))<0)
+X            if (len+i > g_bufSize-8 && (res=reallocate(len+i))<0)
+N                return res;
+N
+N            memcpy(g_buf+i, s, len);
+N            i += len;
+N        }
+N        else if (type&CRP_ARRAY)
+X        else if (type&0x80)
+N        {
+N            uint8_t size = type&0x0f;
+N            uint32_t len = va_arg(*args, int32_t);
+X            uint32_t len = __va_arg(*args, int32_t);
+N
+N            ALIGN(i, 4);
+X            i = i&((4)-1) ? (i&~((4)-1))+(4) : i;
+N            g_buf[i-1] = origType;
+N            *(uint32_t *)(g_buf+i) = len;
+N            i += 4;
+N            ALIGN(i, size);
+X            i = i&((size)-1) ? (i&~((size)-1))+(size) : i;
+N            len *= size; // scale by size of array elements
+N
+N            if (len+i>g_bufSize-CRP_BUFPAD && (res=reallocate(len+i))<0)
+X            if (len+i>g_bufSize-8 && (res=reallocate(len+i))<0)
+N                return res;
+N
+N            ptr = va_arg(*args, int8_t *);
+X            ptr = __va_arg(*args, int8_t *);
+N            memcpy(g_buf+i, ptr, len);
+N            i += len;
+N        }
+N        else
+N            return CRP_RES_ERROR_PARSE;
+X            return -3;
+N
+N        // skip hint data if we're not a source
+N        if (!g_hinformer && origType&CRP_HINT)
+X        if (!g_hinformer && origType&0x40)
+N            i = si;
+N
+N        if (i>g_bufSize-CRP_BUFPAD && (res=reallocate(g_bufSize))<0)
+X        if (i>g_bufSize-8 && (res=reallocate(g_bufSize))<0)
+N            return res;
+N    }
+N
+N    // set length
+N    g_len = i-CRP_HEADER_LEN;
+X    g_len = i-12;
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+N// this isn't completely necessary, but it makes things a lot easier to use.
+N// passing a pointer to a pointer and then having to dereference is just confusing....
+N// so for scalars (ints, floats) you don't need to pass in ** pointers, just * pointers so
+N// chirp can write the value into the * pointer and hand it back.
+N// But for arrays you need ** pointers, so chirp doesn't need to copy the whole array into your buffer---
+N// chirp will write the * pointer value into your ** pointer.
+Nint loadArgs(va_list *args, void *recvArgs[])
+N{
+N    int i;
+N    uint8_t type, size;
+N    void **recvArg;
+N
+N    for (i=0; recvArgs[i]!=NULL && i<CRP_MAX_ARGS; i++)
+X    for (i=0; recvArgs[i]!=0 && i<10; i++)
+N    {
+N        type = chirpGetType(recvArgs[i]);
+N        recvArg = va_arg(*args, void **);
+X        recvArg = __va_arg(*args, void * *);
+N        if (recvArg==NULL)
+X        if (recvArg==0)
+N            return CRP_RES_ERROR_PARSE;
+X            return -3;
+N
+N        if (!(type&CRP_ARRAY)) // if we're a scalar
+X        if (!(type&0x80)) 
+N        {
+N            size = type&0x0f;
+N            if (size==1) *(uint8_t *)recvArg = *(uint8_t *)recvArgs[i];
+N            else if (size==2) *(uint16_t *)recvArg = *(uint16_t *)recvArgs[i];
+N            else if (size==4) *(uint32_t *)recvArg = *(uint32_t *)recvArgs[i];
+N            //else if (size==8) *recvArg = *(double *)recvArgs[i];
+N            else return CRP_RES_ERROR_PARSE;
+X            else return -3;
+N        }
+N        else // we're an array
+N        {
+N            if (type==CRP_STRING)
+X            if (type==((0x20 | 0x80) | 0x01))
+N                *(char **)recvArg = (char *)recvArgs[i];
+N            else
+N            {
+N                *(uint32_t *)recvArg = *(uint32_t *)recvArgs[i++];
+N                recvArg = va_arg(*args, void **);
+X                recvArg = __va_arg(*args, void * *);
+N                if (recvArg==NULL)
+X                if (recvArg==0)
+N                    return CRP_RES_ERROR_PARSE;
+X                    return -3;
+N                *(void **)recvArg = recvArgs[i];
+N            }
+N        }
+N    }
+N    // check to see if last arg is NULL, if not, we have a parse error
+N    // if the arg isn't null, it means the caller is expecting data to be
+N    // put there.  If data isn't put there, and the caller dereferences, segfault
+N    if (va_arg(*args, void **)!=NULL)
+X    if (__va_arg(*args, void * *)!=0)
+N        return CRP_RES_ERROR_PARSE;
+X        return -3;
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+Nint chirpCall(uint8_t service, ChirpProc proc, ...)
+N{
+N    int res;
+N    uint8_t type;
+N    va_list args;
+N
+N    // if it's just a regular chirpCall (not init or enumerate), we need to be connected
+N    if (!(service&CRP_CALL) && !g_connected)
+X    if (!(service&0x80) && !g_connected)
+N        return CRP_RES_ERROR_NOT_CONNECTED;
+X        return -6;
+N
+N    // parse args and assemble in g_buf
+N    va_start(args, proc);
+X    __va_start(args, proc);
+N    g_len = 0;
+N    if ((res=assembleHelper(&args))<0)
+N    {
+N        va_end(args);
+X        __va_end(args);
+N        return res;
+N    }
+N
+N    if (service&CRP_CALL) // special case for enumerate and init (internal calls)
+X    if (service&0x80) 
+N    {
+N        type = service;
+N        service = SYNC;
+X        service = 0;
+N    }
+N    else
+N        type = CRP_CALL;
+X        type = 0x80;
+N
+N    // linkSend chirpCall data
+N    if ((res=sendChirpRetry(type, proc))!=CRP_RES_OK) // convert chirpCall into response
+X    if ((res=sendChirpRetry(type, proc))!=0) 
+N    {
+N        va_end(args);
+X        __va_end(args);
+N        return res;
+N    }
+N
+N    // if the service is synchronous, linkReceive response while servicing other calls
+N    if (service==SYNC)
+X    if (service==0)
+N    {
+N        ChirpProc recvProc;
+N        void *recvArgs[CRP_MAX_ARGS+1];
+X        void *recvArgs[10+1];
+N
+N        while(1)
+N        {
+N            if ((res=recvChirp(&type, &recvProc, recvArgs, TRUE))==CRP_RES_OK)
+X            if ((res=recvChirp(&type, &recvProc, recvArgs, 1))==0)
+N            {
+N                if (type&CRP_RESPONSE)
+X                if (type&0x40)
+N                    break;
+N                else // handle calls as they come in
+N                    handleChirp(type, recvProc, recvArgs);
+N            }
+N            else
+N            {
+N                va_end(args);
+X                __va_end(args);
+N                return res;
+N            }
+N        }
+N
+N        // load args
+N        if ((res=loadArgs(&args, recvArgs))<0)
+N        {
+N            va_end(args);
+X            __va_end(args);
+N            return res;
+N        }
+N    }
+N
+N
+N    va_end(args);
+X    __va_end(args);
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+Nint sendChirpRetry(uint8_t type, ChirpProc proc)
+N{
+N    int i, res;
+N
+N    for (i=0; i<CRP_RETRIES; i++)
+X    for (i=0; i<3; i++)
+N    {
+N        res = sendChirp(type, proc);
+N        if (res==CRP_RES_OK)
+X        if (res==0)
+N            break;
+N    }
+N
+N    // if sending the chirp fails after retries, we should assume we're no longer connected
+N    if (res<0)
+N        g_connected = FALSE;
+X        g_connected = 0;
+N
+N    return res;
+N}
+N
+Nint sendChirp(uint8_t type, ChirpProc proc)
+N{
+N    int res;
+N#ifdef CRP_ERROR_CORRECTED
+N    res = sendFull(type, proc);
+N#else
+S    // we'll linkSend forever as long as we get naks
+S    // we rely on receiver to give up
+S    while((res=sendHeader(type, proc))==CRP_RES_ERROR_CRC);
+S    if (res!=CRP_RES_OK)
+S        return res;
+S    res = sendData();
+N#endif
+N
+N    if (res!=CRP_RES_OK)
+X    if (res!=0)
+N        return res;
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+Nint handleChirp(uint8_t type, ChirpProc proc, void *args[])
+N{
+N    int res;
+N    uint32_t responseInt = 0;
+N    uint8_t n;
+N    ProcPtr ptr;
+N
+N    // reset data in case there is a null response
+N    g_len = 4; // leave room for responseInt
+N
+N    // check for intrinsic calls
+N    if (type&CRP_INTRINSIC)
+X    if (type&0x20)
+N    {
+N        if (type==CRP_CALL_ENUMERATE)
+X        if (type==(0x80 | 0x20 | 0x00))
+N            responseInt = handleEnumerate((char *)args[0], (ChirpProc *)args[1]);
+N        else if (type==CRP_CALL_INIT)
+X        else if (type==(0x80 | 0x20 | 0x01))
+N            responseInt = handleInit((uint16_t *)args[0], (uint8_t *)args[1]);
+N        else
+N            return CRP_RES_ERROR;
+X            return -1;
+N    }
+N    else // normal chirpCall
+N    {
+N        if (proc>=g_procTableSize)
+N            return CRP_RES_ERROR; // index exceeded
+X            return -1; 
+N
+N        ptr = g_procTable[proc].procPtr;
+N        if (ptr==NULL)
+X        if (ptr==0)
+N            return CRP_RES_ERROR; // some chirps are not meant to be called in both directions
+X            return -1; 
+N
+N        // count args
+N        for (n=0; args[n]!=NULL; n++);
+X        for (n=0; args[n]!=0; n++);
+N
+N        if (n==0)
+N            responseInt = (*ptr)();
+N        else if (n==1)
+N            responseInt = (*(uint32_t(*)(void*))ptr)(args[0]);
+N        else if (n==2)
+N            responseInt = (*(uint32_t(*)(void*,void*))ptr)(args[0],args[1]);
+N        else if (n==3)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*))ptr)(args[0],args[1],args[2]);
+N        else if (n==4)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*,void*))ptr)(args[0],args[1],args[2],args[3]);
+N        else if (n==5)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*,void*,void*))ptr)(args[0],args[1],args[2],args[3],args[4]);
+N        else if (n==6)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*,void*,void*,void*))ptr)(args[0],args[1],args[2],args[3],args[4],args[5]);
+N        else if (n==7)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*,void*,void*,void*,void*))ptr)(args[0],args[1],args[2],args[3],args[4],args[5],args[6]);
+N        else if (n==8)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*,void*,void*,void*,void*,void*))ptr)(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
+N        else if (n==9)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*,void*,void*,void*,void*,void*,void*))ptr)(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8]);
+N        else if (n==10)
+N            responseInt = (*(uint32_t(*)(void*,void*,void*,void*,void*,void*,void*,void*,void*,void *))ptr)(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9]);
+N    }
+N
+N    // if it's a chirp chirpCall, we need to linkSend back the result
+N    // result is in g_buf
+N    if (type&CRP_CALL)
+X    if (type&0x80)
+N    {
+N        // write responseInt
+N        *(uint32_t *)(g_buf+CRP_HEADER_LEN) = responseInt;
+X        *(uint32_t *)(g_buf+12) = responseInt;
+N        // send response
+N        if ((res=sendChirpRetry(CRP_RESPONSE | (type&~CRP_CALL), g_procTable[proc].chirpProc))!=CRP_RES_OK) // convert chirpCall into response
+X        if ((res=sendChirpRetry(0x40 | (type&~0x80), g_procTable[proc].chirpProc))!=0) 
+N            return res;
+N    }
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+Nint reallocTable(void)
+N{
+N    ProcTableEntry *newProcTable;
+N    int newProcTableSize;
+N
+N    // allocate new table, zero
+N    newProcTableSize = g_procTableSize+CRP_PROCTABLE_LEN;
+X    newProcTableSize = g_procTableSize+0x20;
+N    newProcTable = (ProcTableEntry *)malloc(sizeof(ProcTableEntry)*newProcTableSize);
+N    memset(newProcTable, 0, sizeof(ProcTableEntry)*newProcTableSize);
+N    // copy to new table
+N    memcpy(newProcTable, g_procTable, sizeof(ProcTableEntry)*g_procTableSize);
+N    // delete old table
+N    free(g_procTable);
+N    // set to new
+N    g_procTable = newProcTable;
+N    g_procTableSize = newProcTableSize;
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+NChirpProc lookupTable(const char *procName)
+N{
+N    ChirpProc i;
+N
+N    for(i=0; i<g_procTableSize; i++)
+N    {
+N        if (g_procTable[i].procName!=NULL && strcmp(g_procTable[i].procName, procName)==0)
+X        if (g_procTable[i].procName!=0 && strcmp(g_procTable[i].procName, procName)==0)
+N            return i;
+N    }
+N    return -1;
+N}
+N
+N
+NChirpProc updateTable(const char *procName, ProcPtr procPtr)
+N{
+N    ChirpProc proc;
+N    // if it exists already, update,
+N    // if it doesn't exist, add it
+N    if (procName==NULL)
+X    if (procName==0)
+N        return -1;
+N
+N    proc = lookupTable(procName);
+N    if (proc<0) // next empty entry
+N    {
+N        for (proc=0; proc<g_procTableSize && g_procTable[proc].procName; proc++);
+N        if (proc==g_procTableSize)
+N        {
+N            reallocTable();
+N            return updateTable(procName, procPtr);
+N        }
+N    }
+N
+N    // add to table
+N    g_procTable[proc].procName = procName;
+N    g_procTable[proc].procPtr = procPtr;
+N
+N    return proc;
+N}
+N
+NChirpProc chirpGetProc(const char *procName, ProcPtr callback)
+N{
+N    uint32_t res;
+N    ChirpProc cproc = -1;
+N
+N    if (callback)
+N        cproc = updateTable(procName, callback);
+N
+N    if (chirpCall(CRP_CALL_ENUMERATE, 0,
+X    if (chirpCall((0x80 | 0x20 | 0x00), 0,
+N                  STRING(procName), // linkSend name
+X                  ((0x20 | 0x80) | 0x01), procName, 
+N                  INT16(cproc), // linkSend local index
+X                  0x02, cproc, 
+N                  END_SEND_ARGS,
+X                  0,
+N                  &res, // get remote index
+N                  END_RECV_ARGS
+X                  0
+N                  )>=0)
+N        return res;
+N
+N    // a negative ChirpProc is an error
+N    return -1;
+N}
+N
+Nint chirpRemoteInit()
+N{
+N    int res;
+N    uint32_t responseInt;
+N    uint8_t hinformer;
+N
+N    if (g_remoteInit)
+N        return CRP_RES_OK;
+X        return 0;
+N
+N    res = chirpCall(CRP_CALL_INIT, 0,
+X    res = chirpCall((0x80 | 0x20 | 0x01), 0,
+N                    INT16(g_blkSize), // linkSend block size
+X                    0x02, g_blkSize, 
+N                    UINT8(0),         // send whether we're interested in hints or not (we're not)
+X                    0x01, 0,         
+N                    END_SEND_ARGS,
+X                    0,
+N                    &responseInt,
+N                    &hinformer,       // receive whether we should send hints
+N                    END_RECV_ARGS
+X                    0
+N                    );
+N    if (res>=0)
+N    {
+N        g_connected = TRUE;
+X        g_connected = 1;
+N        g_hinformer = hinformer;
+N        return responseInt;
+N    }
+N    return res;
+N}
+N
+Nint chirpSetProc(const char *procName, ProcPtr proc)
+N{
+N    if (updateTable(procName, proc)<0)
+N        return CRP_RES_ERROR;
+X        return -1;
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+Nint32_t handleEnumerate(char *procName, ChirpProc *callback)
+N{
+N    ChirpProc proc;
+N    // lookup in table
+N    proc = lookupTable(procName);
+N    // set remote index in table
+N    g_procTable[proc].chirpProc = *callback;
+N
+N    return proc;
+N}
+N
+Nint32_t handleInit(uint16_t *blkSize, uint8_t *hinformer)
+N{
+N    int32_t responseInt;
+N
+N    g_remoteInit = TRUE;
+X    g_remoteInit = 1;
+N    responseInt = chirpInit();
+N    g_remoteInit = FALSE;
+X    g_remoteInit = 0;
+N    g_connected = TRUE;
+X    g_connected = 1;
+N    g_blkSize = *blkSize;  // get block size, write it
+N    g_hinformer = *hinformer;
+N
+N    CRP_RETURN(UINT8(0), END);
+X    chirpAssemble(0, 0x01, 0, 0, 0);
+N
+N    return responseInt;
+N
+N}
+N
+Nint reallocate(uint32_t min)
+N{
+N#ifdef CRP_SHARED_MEM
+N    return CRP_RES_ERROR_MEMORY;
+X    return -5;
+N#else
+S    uint8_t *newbuf;
+S
+S    min += CRP_BUFSIZE;
+S    newbuf = malloc(min);
+S    memcpy(newbuf, g_buf, g_bufSize);
+S    free(g_buf);
+S    g_buf = newbuf;
+S    g_bufSize = min;
+S
+S    return CRP_RES_OK;
+N#endif
+N}
+N
+N// service deals with calls and callbacks
+Nint chirpService()
+N{
+N    int i = 0;
+N    uint8_t type;
+N    ChirpProc recvProc;
+N    void *args[CRP_MAX_ARGS+1];
+X    void *args[10+1];
+N
+N    while(recvChirp(&type, &recvProc, args, FALSE)==CRP_RES_OK)
+X    while(recvChirp(&type, &recvProc, args, 0)==0)
+N    {
+N        handleChirp(type, recvProc, args);
+N        i++;
+N    }
+N
+N    return i;
+N}
+N
+Nint recvChirp(uint8_t *type, ChirpProc *proc, void *args[], bool wait) // null pointer terminates
+N{
+N    int res;
+N    uint8_t dataType, size, a;
+N    uint32_t i, len;
+N
+N    // linkReceive
+N#ifdef CRP_ERROR_CORRECTED
+N    res = recvFull(type, proc, wait);
+N#else
+S    for (i=0; TRUE; i++)
+S    {
+S        res = recvHeader(type, proc, wait);
+S        if (res==CRP_RES_ERROR_CRC)
+S        {
+S            if (i<CRP_MAX_NAK)
+S                continue;
+S            else
+S                return CRP_RES_ERROR_MAX_NAK;
+S        }
+S        else if (res==CRP_RES_OK)
+S            break;
+S        else
+S            return res;
+S    }
+S    res = recvData();
+N#endif
+N    if (res!=CRP_RES_OK)
+X    if (res!=0)
+N        return res;
+N
+N    // get responseInt from response
+N    if (*type&CRP_RESPONSE)
+X    if (*type&0x40)
+N    {
+N        // add responseInt to arg list
+N        args[0] = (void *)(g_buf+CRP_HEADER_LEN);
+X        args[0] = (void *)(g_buf+12);
+N        *(g_buf+CRP_HEADER_LEN-1) = CRP_UINT32; // write type so it parses correctly
+X        *(g_buf+12-1) = 0x04; 
+N        // increment pointer
+N        i = CRP_HEADER_LEN+4;
+X        i = 12+4;
+N        a = 1;
+N    }
+N    else // call has no responseInt
+N    {
+N        i = CRP_HEADER_LEN;
+X        i = 12;
+N        a = 0;
+N    }
+N    // parse remaining args
+N    for(; i<g_len+CRP_HEADER_LEN; a++)
+X    for(; i<g_len+12; a++)
+N    {
+N        if (a==CRP_MAX_ARGS)
+X        if (a==10)
+N            return CRP_RES_ERROR;
+X            return -1;
+N
+N        dataType = g_buf[i++];
+N        size = dataType&0x0f;
+N        if (!(dataType&CRP_ARRAY)) // if we're a scalar
+X        if (!(dataType&0x80)) 
+N        {
+N            ALIGN(i, size);
+X            i = i&((size)-1) ? (i&~((size)-1))+(size) : i;
+N            args[a] = (void *)(g_buf+i);
+N            i += dataType&0x0f; // extract size of scalar, add it
+N        }
+N        else // we're an array
+N        {
+N            if (dataType==CRP_STRING) // string is a special case
+X            if (dataType==((0x20 | 0x80) | 0x01)) 
+N            {
+N                args[a] = (void *)(g_buf+i);
+N                i += strlen((char *)(g_buf+i))+1; // +1 include null character
+N            }
+N            else
+N            {
+N                ALIGN(i, 4);
+X                i = i&((4)-1) ? (i&~((4)-1))+(4) : i;
+N                len = *(uint32_t *)(g_buf+i);
+N                args[a++] = (void *)(g_buf+i);
+N                i += 4;
+N                ALIGN(i, size);
+X                i = i&((size)-1) ? (i&~((size)-1))+(size) : i;
+N                args[a] = (void *)(g_buf+i);
+N                i += len*size;
+N            }
+N        }
+N    }
+N    args[a] = NULL; // terminate list
+X    args[a] = 0; 
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N
+Nuint8_t chirpGetType(void *arg)
+N{
+N    return *((uint8_t *)arg - 1);
+N}
+N
+Nuint16_t calcCrc(uint8_t *buf, uint32_t len)
+N{
+N    uint32_t i;
+N    uint16_t crc;
+N
+N    // this isn't a real crc, but it's cheap and prob good enough
+N    for (i=0, crc=0; i<len; i++)
+N        crc += buf[i];
+N    crc += len;
+N
+N    return crc;
+N}
+N
+N#ifdef CRP_ERROR_CORRECTED
+Nint sendFull(uint8_t type, ChirpProc proc)
+N{
+N    int res;
+N
+N    *(uint32_t *)g_buf = CRP_START_CODE;
+X    *(uint32_t *)g_buf = 0xaaaa5555;
+N    *(uint8_t *)(g_buf+4) = type;
+N    *(ChirpProc *)(g_buf+6) = proc;
+N    *(uint32_t *)(g_buf+8) = g_len;
+N    // linkSend header
+N    if ((res=linkSend(g_buf, CRP_MAX_HEADER_LEN, CRP_SEND_TIMEOUT))<0)
+X    if ((res=linkSend(g_buf, 64, 500))<0)
+N        return res;
+N
+N#ifndef CRP_SHARED_MEM
+S    // if we haven't sent everything yet....
+S    if (g_len+CRP_HEADER_LEN>CRP_MAX_HEADER_LEN)
+S    {
+S        if ((res=linkSend(g_buf+CRP_MAX_HEADER_LEN, g_len-(CRP_MAX_HEADER_LEN-CRP_HEADER_LEN), CRP_SEND_TIMEOUT))<0)
+S            return res;
+S    }
+N#endif
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N#endif
+N
+N#ifndef CRP_ERROR_CORRECTED
+Sint sendHeader(uint8_t type, ChirpProc proc)
+S{
+S    int res;
+S    bool ack;
+S    uint32_t chunk, startCode = CRP_START_CODE;
+S    uint16_t crc;
+S
+S    if ((res=linkSend((uint8_t *)&startCode, 4, CRP_SEND_TIMEOUT))<0)
+S        return res;
+S
+S    *(uint8_t *)g_buf = type;
+S    *(uint16_t *)(g_buf+2) = proc;
+S    *(uint32_t *)(g_buf+4) = g_len;
+S    if ((res=linkSend(g_buf, CRP_HEADER_LEN, CRP_SEND_TIMEOUT))<0)
+S        return res;
+S    crc = calcCrc(g_buf, CRP_HEADER_LEN);
+S
+S    if (g_len>=CRP_MAX_HEADER_LEN)
+S        chunk = CRP_MAX_HEADER_LEN;
+S    else
+S        chunk = g_len;
+S    if (linkSend(g_buf, chunk, CRP_SEND_TIMEOUT)<0)
+S        return CRP_RES_ERROR_SEND_TIMEOUT;
+S
+S    // send crc
+S    crc += calcCrc(g_buf, chunk);
+S    if (linkSend((uint8_t *)&crc, 2, CRP_SEND_TIMEOUT)<0)
+S        return CRP_RES_ERROR_SEND_TIMEOUT;
+S
+S    if ((res=recvAck(&ack, CRP_HEADER_TIMEOUT))<0)
+S        return res;
+S
+S    if (ack)
+S        g_offset = chunk;
+S    else
+S        return CRP_RES_ERROR_CRC;
+S
+S    return CRP_RES_OK;
+S}
+N#endif
+N
+N#ifndef CRP_ERROR_CORRECTED
+Sint sendData()
+S{
+S    uint16_t crc;
+S    uint32_t chunk;
+S    uint8_t sequence;
+S    bool ack;
+S    int res;
+S
+S    for (sequence=0; g_offset<g_len; )
+S    {
+S        if (g_len-g_offset>=g_blkSize)
+S            chunk = g_blkSize;
+S        else
+S            chunk = g_len-g_offset;
+S        // send data
+S        if (linkSend(g_buf+g_offset, chunk, CRP_SEND_TIMEOUT)<0)
+S            return CRP_RES_ERROR_SEND_TIMEOUT;
+S        // send sequence
+S        if (linkSend((uint8_t *)&sequence, 1, CRP_SEND_TIMEOUT)<0)
+S            return CRP_RES_ERROR_SEND_TIMEOUT;
+S        // send crc
+S        crc = calcCrc(g_buf+g_offset, chunk) + calcCrc((uint8_t *)&sequence, 1);
+S        if (linkSend((uint8_t *)&crc, 2, CRP_SEND_TIMEOUT)<0)
+S            return CRP_RES_ERROR_SEND_TIMEOUT;
+S
+S        if ((res=recvAck(&ack, CRP_DATA_TIMEOUT))<0)
+S            return res;
+S        if (ack)
+S        {
+S            g_offset += chunk;
+S            sequence++;
+S        }
+S    }
+S    return CRP_RES_OK;
+S}
+N#endif
+N
+N#ifndef CRP_ERROR_CORRECTED
+Sint sendAck(bool ack) // FALSE=nack
+S{
+S    uint8_t c;
+S
+S    if (ack)
+S        c = CRP_ACK;
+S    else
+S        c = CRP_NACK;
+S
+S    if (linkSend(&c, 1, CRP_SEND_TIMEOUT)<0)
+S        return CRP_RES_ERROR_SEND_TIMEOUT;
+S
+S    return CRP_RES_OK;
+S}
+N#endif
+N
+N#ifndef CRP_ERROR_CORRECTED
+Sint recvHeader(uint8_t *type, ChirpProc *proc, bool wait)
+S{
+S    int res;
+S    uint8_t c;
+S    uint32_t chunk, startCode = 0;
+S    uint16_t crc, rcrc;
+S
+S    if ((res=linkReceive(&c, 1, wait?CRP_HEADER_TIMEOUT:0))<0)
+S        return res;
+S    if (res<1)
+S        return CRP_RES_ERROR;
+S
+S    // find start code
+S    while(1)
+S    {
+S        startCode >>= 8;
+S        startCode |= (uint32_t)c<<24;
+S        if (startCode==CRP_START_CODE)
+S            break;
+S        if ((res=linkReceive(&c, 1, CRP_IDLE_TIMEOUT))<0)
+S            return res;
+S        if (res<1)
+S            return CRP_RES_ERROR;
+S    }
+S    // receive rest of header
+S    if (linkReceive(g_buf, CRP_HEADER_LEN, CRP_IDLE_TIMEOUT)<0)
+S        return CRP_RES_ERROR_RECV_TIMEOUT;
+S    if (res<(int)CRP_HEADER_LEN)
+S        return CRP_RES_ERROR;
+S    *type = *(uint8_t *)g_buf;
+S    *proc = *(ChirpProc *)(g_buf+2);
+S    g_len = *(uint32_t *)(g_buf+4);
+S    crc = calcCrc(g_buf, CRP_HEADER_LEN);
+S
+S    if (g_len>=CRP_MAX_HEADER_LEN-CRP_HEADER_LEN)
+S        chunk = CRP_MAX_HEADER_LEN-CRP_HEADER_LEN;
+S    else
+S        chunk = g_len;
+S    if ((res=linkReceive(g_buf, chunk+2, CRP_IDLE_TIMEOUT))<0) // +2 for crc
+S        return res;
+S    if (res<(int)chunk+2)
+S        return CRP_RES_ERROR;
+S    copyAlign((char *)&rcrc, (char *)(g_buf+chunk), 2);
+S    if (rcrc==crc+calcCrc(g_buf, chunk))
+S    {
+S        g_offset = chunk;
+S        sendAck(TRUE);
+S    }
+S    else
+S    {
+S        sendAck(FALSE); // linkSend nack
+S        return CRP_RES_ERROR_CRC;
+S    }
+S
+S    return CRP_RES_OK;
+S}
+N#endif
+N
+N#ifdef CRP_ERROR_CORRECTED
+Nint recvFull(uint8_t *type, ChirpProc *proc, bool wait)
+N{
+N    int res;
+N    uint32_t startCode;
+N
+N    // receive header, with startcode check to make sure we're synced
+N    while(1)
+N    {
+N        if ((res=linkReceive(g_buf, CRP_MAX_HEADER_LEN, wait?CRP_HEADER_TIMEOUT:0))<0)
+X        if ((res=linkReceive(g_buf, 64, wait?500:0))<0)
+N            return res;
+N        // check to see if we received less data than expected
+N        if (res<CRP_MAX_HEADER_LEN)
+X        if (res<64)
+N            return CRP_RES_ERROR;
+X            return -1;
+N
+N        startCode = *(uint32_t *)g_buf;
+N        if (startCode==CRP_START_CODE)
+X        if (startCode==0xaaaa5555)
+N            break;
+N    }
+N    *type = *(uint8_t *)(g_buf+4);
+N    *proc = *(ChirpProc *)(g_buf+6);
+N    g_len = *(uint32_t *)(g_buf+8);
+N
+N#ifndef CRP_SHARED_MEM
+S    if (g_len+CRP_HEADER_LEN>g_bufSize && (res=reallocate(g_len+CRP_HEADER_LEN))<0)
+S        return res;
+S
+S    if (g_len+CRP_HEADER_LEN>CRP_MAX_HEADER_LEN)
+S    {
+S        if ((res=linkReceive(g_buf+CRP_MAX_HEADER_LEN, g_len-(CRP_MAX_HEADER_LEN-CRP_HEADER_LEN), CRP_IDLE_TIMEOUT))<0)
+S            return res;
+S        // check to see if we received less data than expected
+S        if (res<(int)g_len-(CRP_MAX_HEADER_LEN-(int)CRP_HEADER_LEN))
+S            return CRP_RES_ERROR;
+S    }
+N#endif
+N
+N    return CRP_RES_OK;
+X    return 0;
+N}
+N#endif
+N
+N// We assume that the probability that we linkSend a nack and the receiver interprets a nack is 100%
+N// We can't assume that the probability that we linkSend an ack and the receiver interprets it is 100%
+N// Scenario
+N// 1) we receive packet 0, redo is 0, crc is good, we increment offset, linkSend ack. (inc) (inc) rs=0, s=0, inc
+N// 2) we receive packet 1, crc is bad, we linkSend nack (!inc) (!inc) rs=1, s=1
+N// 3) sender gets nack, so it resends
+N// 4) we receive packet 1, redo is 1, crc is good, we don't increment offset, linkSend ack (inc) (inc) rs=1, s=1
+N// 5) we receive packet 2, redo is 0, crc is bad, we linkSend nack (!inc) (!inc) rs=2, s=2
+N// 6) we receive packet 2, redo is 1, crc is good, we linkSend ack (inc) (inc) rs=2, s=2
+N// 7) we receive packet 3, redo is 0, crc is good, we linkSend ack (inc) (inc)
+N// different scenario
+N// 1) we receive packet 0, redo is 0, crc is good, we increment offset, linkSend ack. (inc) (inc) rs=0, s=0
+N// 2) sender thinks it gets a nack, so it resends
+N// 3) we receive packet 0 again, but crc is bad, we linkSend nack (!inc) (!inc) rs=1, s=0
+N// 4) sender gets nack, so it resends
+N// 5) we receive packet 0, redo is 1, crc is good, we don't increment offset, linkSend ack (!inc) (inc) rs=1, s=0
+N// (we've essentially thrown out this packet, but that's ok, because we have a good packet 0)
+N// 6) we receive packet 1, redo is 0, crc is bad, we linkSend nack (!inc) (!inc) rs=1, s=1
+N// 7) we receive packet 1, redo is 1, crc is good, we linkSend ack (inc) (inc) rs=1, s=1
+N// 8) we receive packet 2, redo is 0, crc is good, we linkSend ack (inc) (inc) rs=2, s=2
+N// a redo flag is not sufficient to communicate which packet we're on because the sender can misinterpret
+N// any number of nacks
+N#ifndef CRP_ERROR_CORRECTED
+Sint recvData()
+S{
+S    int res;
+S    uint32_t chunk;
+S    uint16_t crc;
+S    uint8_t sequence, rsequence, naks;
+S
+S    if (g_len+3+CRP_HEADER_LEN>g_bufSize && (res=reallocate(g_len+3+CRP_HEADER_LEN))<0) // +3 to read sequence, crc
+S        return res;
+S
+S    for (rsequence=0, naks=0; g_offset<g_len; )
+S    {
+S        if (g_len-g_offset>=g_blkSize)
+S            chunk = g_blkSize;
+S        else
+S            chunk = g_len-g_offset;
+S        if (linkReceive(g_buf+g_offset, chunk+3, CRP_DATA_TIMEOUT)<0) // +3 to read sequence, crc
+S            return CRP_RES_ERROR_RECV_TIMEOUT;
+S        if (res<(int)chunk+3)
+S            return CRP_RES_ERROR;
+S        sequence = *(uint8_t *)(g_buf+g_offset+chunk);
+S        copyAlign((char *)&crc, (char *)(g_buf+g_offset+chunk+1), 2);
+S        if (crc==calcCrc(g_buf+g_offset, chunk+1))
+S        {
+S            if (rsequence==sequence)
+S            {
+S                g_offset += chunk;
+S                rsequence++;
+S            }
+S            sendAck(TRUE);
+S            naks = 0;
+S        }
+S        else
+S        {
+S            sendAck(FALSE);
+S            naks++;
+S            if (naks<CRP_MAX_NAK)
+S                naks++;
+S            else
+S                return CRP_RES_ERROR_MAX_NAK;
+S        }
+S    }
+S    return CRP_RES_OK;
+S}
+N#endif
+N
+N#ifndef CRP_ERROR_CORRECTED
+Sint recvAck(bool *ack, uint16_t timeout) // FALSE=nack
+S{
+S    int res;
+S    uint8_t c;
+S    if ((res=linkReceive(&c, 1, timeout))<0)
+S        return CRP_RES_ERROR_RECV_TIMEOUT;
+S    if (res<1)
+S        return CRP_RES_ERROR;
+S
+S    if (c==CRP_ACK)
+S        *ack = TRUE;
+S    else
+S        *ack = FALSE;
+S
+S    return CRP_RES_OK;
+S}
+N#endif

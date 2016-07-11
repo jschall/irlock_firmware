@@ -1,0 +1,12 @@
+--cpu Cortex-M0
+".\m0\main_m0.o"
+"..\libpixy\libpixy_m0.lib"
+".\m0\startup_lpc43xx_m0.o"
+".\m0\qqueue.o"
+".\m0\exec_m0.o"
+".\m0\frame_m0.o"
+".\m0\rls_m0.o"
+--library_type=microlib --strict --scatter ".\m0\m0.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\m0.map" -o .\m0\m0.axf
